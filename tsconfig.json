@@ -1,0 +1,47 @@
+{
+    "compilerOptions": {
+        "baseUrl": ".",
+        "lib": ["DOM", "DOM.Iterable", "ES2022"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "noEmit": true,
+        "esModuleInterop": true,
+        "module": "esnext",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "incremental": true,
+
+        "plugins": [
+            {
+                "name": "next"
+            }
+        ],
+
+        "paths": {
+            "@/*": ["./*"],
+
+            "@components": ["./components/*"],
+            "@hooks": ["./hooks/*"],
+            "@utilities": ["./utilities/*"],
+            "@contexts": ["./contexts/*"],
+            "@features": ["./features/*"],
+            "@layouts": ["./layouts/*"],
+            "@pages": ["./pages/*"],
+            "@services": ["./services/*"],
+            "@types": ["./types/*"],
+            "@data": ["./data/*"],
+
+            "@payload": ["./payload/*"],
+            "@payload-config": ["./payload/payload.config.ts"],
+            "@payload-types": ["./payload/payload-types.ts"],
+            "@payload-schema": ["./payload/payload-schema.ts"]
+        },
+
+        "target": "ES2022"
+    },
+    "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+    "exclude": ["node_modules"]
+}

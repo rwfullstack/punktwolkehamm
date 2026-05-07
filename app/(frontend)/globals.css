@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+    --font-montserrat: var(--font-montserrat);
+
+    --text-md: 1.05rem;
+
+    --color-foreground: #0d0d0d;
+    --color-background: #ffffff;
+
+    --color-primary: #f38816;
+    --color-primary-light: #ffedd5;
+}
+
+[data-theme="dark"] {
+    --color-foreground: #ffffff;
+    --color-background: #121212;
+
+    --color-gray-50: #1a1a1a;
+    --color-gray-100: #1a1a1a;
+    --color-gray-200: #222222;
+
+    --color-primary: #f38816;
+    --color-primary-light: #fed7aa;
+}
+
+body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+
+    font-family: "Montserrat", sans-serif;
+}

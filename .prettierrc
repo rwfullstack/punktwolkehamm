@@ -1,0 +1,14 @@
+{
+  "semi": false,
+
+  "tabWidth": 4,
+  "printWidth": 120,
+  "proseWrap": "always",
+
+  "quoteProps": "consistent",
+  "trailingComma": "none",
+  "bracketSpacing": true,
+
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindFunctions": ["clsx", "cn", "twMerge"]
+}
