@@ -95,6 +95,10 @@ export interface Config {
     ImagePage: ImagePage;
     AgriculturePage: AgriculturePage;
     OfficePage: OfficePage;
+    ConditionsPage: ConditionsPage;
+    AboutPage: AboutPage;
+    ImprintPage: ImprintPage;
+    PrivacyPage: PrivacyPage;
   };
   globalsSelect: {
     LandingPage: LandingPageSelect<false> | LandingPageSelect<true>;
@@ -103,6 +107,10 @@ export interface Config {
     ImagePage: ImagePageSelect<false> | ImagePageSelect<true>;
     AgriculturePage: AgriculturePageSelect<false> | AgriculturePageSelect<true>;
     OfficePage: OfficePageSelect<false> | OfficePageSelect<true>;
+    ConditionsPage: ConditionsPageSelect<false> | ConditionsPageSelect<true>;
+    AboutPage: AboutPageSelect<false> | AboutPageSelect<true>;
+    ImprintPage: ImprintPageSelect<false> | ImprintPageSelect<true>;
+    PrivacyPage: PrivacyPageSelect<false> | PrivacyPageSelect<true>;
   };
   locale: null;
   user: User & {
@@ -1097,6 +1105,102 @@ export interface OfficePage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ConditionsPage".
+ */
+export interface ConditionsPage {
+  id: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutPage".
+ */
+export interface AboutPage {
+  id: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImprintPage".
+ */
+export interface ImprintPage {
+  id: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrivacyPage".
+ */
+export interface PrivacyPage {
+  id: string;
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "LandingPage_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -1983,6 +2087,46 @@ export interface OfficePageSelect<T extends boolean = true> {
         phone?: T;
         mail?: T;
       };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ConditionsPage_select".
+ */
+export interface ConditionsPageSelect<T extends boolean = true> {
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "AboutPage_select".
+ */
+export interface AboutPageSelect<T extends boolean = true> {
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ImprintPage_select".
+ */
+export interface ImprintPageSelect<T extends boolean = true> {
+  content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "PrivacyPage_select".
+ */
+export interface PrivacyPageSelect<T extends boolean = true> {
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

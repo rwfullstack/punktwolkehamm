@@ -16,6 +16,10 @@ import { InspectionPageGlobal } from "./globals/InspectionPage"
 import { LandingPageGlobal } from "./globals/LandingPage"
 import { MeasurementPageGlobal } from "./globals/MeasurementPage"
 import { OfficePageGlobal } from "./globals/OfficePage"
+import { ConditionsPageGlobal } from "./globals/ConditionsPage"
+import { AboutPageGlobal } from "./globals/AboutPage"
+import { ImprintPageGlobal } from "./globals/ImprintPage"
+import { PrivacyPageGlobal } from "./globals/PrivacyPage"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -35,7 +39,11 @@ export default buildConfig({
         InspectionPageGlobal,
         ImagePageGlobal,
         AgriculturePageGlobal,
-        OfficePageGlobal
+        OfficePageGlobal,
+        ConditionsPageGlobal,
+        AboutPageGlobal,
+        ImprintPageGlobal,
+        PrivacyPageGlobal
     ],
 
     collections: [Users, Resources, Messages],

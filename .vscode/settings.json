@@ -48,12 +48,12 @@
         "package-lock.json": true,
         "next-env.d.ts": true,
         "postcss.config.mjs": true,
-        "package.json": true,
         ".prettierrc": true,
         "app/(payload)": true,
         ".vscode": true,
         ".gitignore": true,
-        "tsconfig.json": true
+        "tsconfig.json": true,
+        "next.config.mjs": true
     },
     "hide-files.files": [
         ".next",
@@ -61,11 +61,11 @@
         "package-lock.json",
         "next-env.d.ts",
         "postcss.config.mjs",
-        "package.json",
         ".prettierrc",
         "app/(payload)",
         ".vscode",
         ".gitignore",
-        "tsconfig.json"
+        "tsconfig.json",
+        "next.config.mjs"
     ]
 }

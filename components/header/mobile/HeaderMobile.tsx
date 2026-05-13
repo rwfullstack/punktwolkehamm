@@ -76,6 +76,7 @@ export const HeaderMobile = () => {
                 <Link href="/behoerden">Behörden</Link>
                 <Link href="/ueber-uns">Über uns</Link>
                 <Link href="/datenschutz">Datenschutz</Link>
+                <Link href="/agb">AGBs</Link>
                 <Link href="/impressum">Impressum</Link>
             </div>
         </header>

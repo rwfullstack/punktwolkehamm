@@ -1,5 +1,6 @@
 import { AtSign, MapPin, Phone } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 
 type Properties = {
     margin?: boolean
@@ -87,18 +88,34 @@ export const Footer = ({ margin = true }: Properties) => {
                             </ol>
                         </li>
 
-                        <li className="flex flex-1 flex-col gap-2">
-                            <h4 className="font-semibold text-white">Rechtliches</h4>
+                        <li className="flex flex-1 flex-col justify-between">
+                            <div className="flex flex-col gap-2">
+                                <h4 className="font-semibold text-white">Rechtliches</h4>
 
-                            <ol className="flex flex-col gap-1 text-white">
-                                <li>
-                                    <Link href="/impressum">Impressum</Link>
-                                </li>
+                                <ol className="flex flex-col gap-1 text-white">
+                                    <li>
+                                        <Link href="/impressum">Impressum</Link>
+                                    </li>
 
-                                <li>
-                                    <Link href="/datenschutz">Datenschutz</Link>
-                                </li>
-                            </ol>
+                                    <li>
+                                        <Link href="/datenschutz">Datenschutz</Link>
+                                    </li>
+
+                                    <li>
+                                        <Link href="/agb">AGBs</Link>
+                                    </li>
+                                </ol>
+                            </div>
+
+                            <Link href="https://bvcp.de/" target="_blank" rel="noopener noreferrer">
+                                <Image
+                                    className="size-30 object-contain object-left"
+                                    src="/Copter_Transparent.png"
+                                    alt="Coopter"
+                                    width={1920}
+                                    height={1080}
+                                />
+                            </Link>
                         </li>
                     </ol>
                 </div>
