@@ -10,7 +10,7 @@ import { Gallery } from "./_components/gallery/Gallery"
 import { RichText } from "./_components/richtext/RichText"
 import { Statistics } from "./_components/statistics/Statistics"
 
-export const dynamic = "force-dynamic"
+export const revalidate = false
 
 export const metadata: Metadata = {
     title: "Foto & Film | PunktWolke Hamm",

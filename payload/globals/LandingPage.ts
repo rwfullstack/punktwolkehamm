@@ -133,6 +133,18 @@ export const LandingPageGlobal: GlobalConfig = Global_Options(
                     ]),
 
                     ARRAY_FIELD("Leistungen", "services", [TEXT_AREA_FIELD("Leistung", "name")])
+                ]),
+
+                NAMED_GROUP_FIELD("Dienstleistungen 6", "service6", [
+                    UPLOAD_FIELD("Bild", "image"),
+
+                    ROW_FIELD([
+                        TEXT_AREA_FIELD("Name", "name"),
+                        TEXT_AREA_FIELD("Text", "text"),
+                        TEXT_AREA_FIELD("Icon", "icon")
+                    ]),
+
+                    ARRAY_FIELD("Leistungen", "services", [TEXT_AREA_FIELD("Leistung", "name")])
                 ])
             ])
         ]),

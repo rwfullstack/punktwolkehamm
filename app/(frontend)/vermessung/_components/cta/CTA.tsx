@@ -16,18 +16,20 @@ export const CTA = async () => {
         <section className="relative flex h-dvh w-full items-center">
             <Image
                 className="absolute top-0 left-0 hidden size-full object-cover md:block"
-                src={"https://punktwolkehamm.de" + ((landingPage?.cta?.image as Resource)?.url ?? "")}
+                src={"/" + ((landingPage?.cta?.image as Resource)?.url ?? "")}
                 alt={(landingPage?.cta?.image as Resource)?.alt ?? "Alternative Text"}
                 width={1920}
                 height={1080}
+                priority
             />
 
             <Image
                 className="absolute top-0 left-0 block size-full object-cover md:hidden"
-                src={"https://punktwolkehamm.de" + ((landingPage?.cta?.imageMobile as Resource)?.url ?? "")}
+                src={"/" + ((landingPage?.cta?.imageMobile as Resource)?.url ?? "")}
                 alt={(landingPage?.cta?.imageMobile as Resource)?.alt ?? "Alternative Text"}
                 width={1920}
                 height={1080}
+                priority
             />
 
             <div className="absolute top-0 left-0 size-full bg-[#001147]/39"></div>

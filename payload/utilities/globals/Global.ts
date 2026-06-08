@@ -12,6 +12,15 @@ export const Global = (
 
         label,
 
+        hooks: {
+            afterChange: [
+                async ({ doc }) => {
+                    await fetch("http://localhost:3000/api/revalidate", { method: "GET" })
+                    await fetch("https://punktwolkehamm.de/api/revalidate", { method: "GET" })
+                }
+            ]
+        },
+
         fields
     }
 }
@@ -29,6 +38,15 @@ export const Global_Options = (
         slug,
 
         label,
+
+        hooks: {
+            afterChange: [
+                async ({ doc }) => {
+                    await fetch("http://localhost:3000/api/revalidate", { method: "GET" })
+                    await fetch("https://punktwolkehamm.de/api/revalidate", { method: "GET" })
+                }
+            ]
+        },
 
         fields,
 

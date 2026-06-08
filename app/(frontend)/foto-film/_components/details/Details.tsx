@@ -35,9 +35,7 @@ export const Details = async () => {
                                 {detail?.linkAvailable && (
                                     <Link
                                         className="flex items-center gap-3 rounded-xl bg-[#2177E8] px-5 py-3 text-white shadow-md transition-all duration-250 hover:scale-105 hover:shadow-lg"
-                                        href={detail?.link ?? ""}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
+                                        href="/virtuelle-touren"
                                     >
                                         {detail?.linkText}
                                         <ArrowRight />

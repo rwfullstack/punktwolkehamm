@@ -25,7 +25,7 @@ export const Gallery = async () => {
                         <Image
                             className="object-cover"
                             src={
-                                "https://punktwolkehamm.de" +
+                                "/" +
                                 ((content?.gallery?.images?.[0]?.image as Resource)?.url ?? "")
                             }
                             alt={(content?.gallery?.images?.[0]?.image as Resource)?.alt ?? "Alternative Text"}
@@ -43,7 +43,7 @@ export const Gallery = async () => {
                             <Image
                                 key={image?.id}
                                 className="object-cover"
-                                src={"https://punktwolkehamm.de" + ((image?.image as Resource)?.url ?? "")}
+                                src={"/" + ((image?.image as Resource)?.url ?? "")}
                                 alt={(image?.image as Resource)?.alt ?? "Alternative Text"}
                                 width={1920}
                                 height={1080}

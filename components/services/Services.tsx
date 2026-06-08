@@ -36,7 +36,7 @@ export const Services = async () => {
                         name={landingPage?.services?.service1?.name ?? ""}
                         text={landingPage?.services?.service1?.text ?? ""}
                         image={
-                            "https://punktwolkehamm.de" +
+                            "/" +
                             ((landingPage?.services?.service1?.image as Resource)?.url ?? "")
                         }
                         alt={(landingPage?.services?.service1?.image as Resource)?.alt ?? "Alternative Text"}
@@ -49,7 +49,7 @@ export const Services = async () => {
                         name={landingPage?.services?.service2?.name ?? ""}
                         text={landingPage?.services?.service2?.text ?? ""}
                         image={
-                            "https://punktwolkehamm.de" +
+                            "/" +
                             ((landingPage?.services?.service2?.image as Resource)?.url ?? "")
                         }
                         alt={(landingPage?.services?.service2?.image as Resource)?.alt ?? "Alternative Text"}
@@ -62,7 +62,7 @@ export const Services = async () => {
                         name={landingPage?.services?.service3?.name ?? ""}
                         text={landingPage?.services?.service3?.text ?? ""}
                         image={
-                            "https://punktwolkehamm.de" +
+                            "/" +
                             ((landingPage?.services?.service3?.image as Resource)?.url ?? "")
                         }
                         alt={(landingPage?.services?.service3?.image as Resource)?.alt ?? "Alternative Text"}
@@ -75,7 +75,7 @@ export const Services = async () => {
                         name={landingPage?.services?.service4?.name ?? ""}
                         text={landingPage?.services?.service4?.text ?? ""}
                         image={
-                            "https://punktwolkehamm.de" +
+                            "/" +
                             ((landingPage?.services?.service4?.image as Resource)?.url ?? "")
                         }
                         alt={(landingPage?.services?.service4?.image as Resource)?.alt ?? "Alternative Text"}
@@ -88,13 +88,26 @@ export const Services = async () => {
                         name={landingPage?.services?.service5?.name ?? ""}
                         text={landingPage?.services?.service5?.text ?? ""}
                         image={
-                            "https://punktwolkehamm.de" +
+                            "/" +
                             ((landingPage?.services?.service5?.image as Resource)?.url ?? "")
                         }
                         alt={(landingPage?.services?.service5?.image as Resource)?.alt ?? "Alternative Text"}
                         icon={landingPage?.services?.service5?.icon ?? ""}
                         href={"/behoerden"}
                         services={landingPage?.services?.service5?.services?.map((service) => service.name ?? "") ?? []}
+                    />
+
+                    <ServiceCard
+                        name={landingPage?.services?.service6?.name ?? ""}
+                        text={landingPage?.services?.service6?.text ?? ""}
+                        image={
+                            "/" +
+                            ((landingPage?.services?.service6?.image as Resource)?.url ?? "")
+                        }
+                        alt={(landingPage?.services?.service6?.image as Resource)?.alt ?? "Alternative Text"}
+                        icon={landingPage?.services?.service6?.icon ?? ""}
+                        href={"/virtuelle-touren"}
+                        services={landingPage?.services?.service6?.services?.map((service) => service.name ?? "") ?? []}
                     />
                 </div>
             </div>

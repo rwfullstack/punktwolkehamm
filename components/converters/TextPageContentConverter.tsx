@@ -50,7 +50,7 @@ export const TextPageContentConverter: JSXConvertersFunction<NodeTypes> = ({ def
         return (
             <Image
                 className="rounded-3xl"
-                src={"https://punktwolkehamm.de" + image.url}
+                src={"/" + image.url}
                 alt={image.alt ?? "Alternative Text"}
                 width={image.width ?? 1920}
                 height={image.height ?? 1080}

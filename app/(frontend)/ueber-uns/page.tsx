@@ -9,8 +9,6 @@ import { TextPageContentConverter } from "@/components/converters/TextPageConten
 import { RichText } from "@/components/RichText"
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
 
-export const dynamic = "force-dynamic"
-
 export const metadata: Metadata = {
     title: "Über uns | PunktWolke Hamm",
     description: "Hier finden Sie alle wichtigen Informationen zu unserer Firma.",

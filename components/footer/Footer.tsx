@@ -35,9 +35,9 @@ export const Footer = ({ margin = true }: Properties) => {
                                 <span>Steinstraße 76a, 12307 Berlin</span>
                             </p>
 
-                            <Link className="flex gap-2 text-white" href="tel:+4917663299777">
+                            <Link className="flex gap-2 text-white" href="tel:+491637367877">
                                 <Phone strokeWidth={1.5} className="size-5" />
-                                <span>+49 176 632 99 777</span>
+                                <span>+49 163 7367 877</span>
                             </Link>
 
                             <Link className="flex gap-2 text-white" href="mailto:info@punktwolkehamm.de">

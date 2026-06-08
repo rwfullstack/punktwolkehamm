@@ -99,6 +99,7 @@ export interface Config {
     AboutPage: AboutPage;
     ImprintPage: ImprintPage;
     PrivacyPage: PrivacyPage;
+    ToursPage: ToursPage;
   };
   globalsSelect: {
     LandingPage: LandingPageSelect<false> | LandingPageSelect<true>;
@@ -111,6 +112,7 @@ export interface Config {
     AboutPage: AboutPageSelect<false> | AboutPageSelect<true>;
     ImprintPage: ImprintPageSelect<false> | ImprintPageSelect<true>;
     PrivacyPage: PrivacyPageSelect<false> | PrivacyPageSelect<true>;
+    ToursPage: ToursPageSelect<false> | ToursPageSelect<true>;
   };
   locale: null;
   user: User & {
@@ -464,6 +466,18 @@ export interface LandingPage {
         | null;
     };
     service5?: {
+      image?: (string | null) | Resource;
+      name?: string | null;
+      text?: string | null;
+      icon?: string | null;
+      services?:
+        | {
+            name?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    service6?: {
       image?: (string | null) | Resource;
       name?: string | null;
       text?: string | null;
@@ -1201,6 +1215,27 @@ export interface PrivacyPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ToursPage".
+ */
+export interface ToursPage {
+  id: string;
+  tours?: {
+    tours?:
+      | {
+          type?: string | null;
+          name?: string | null;
+          icon?: string | null;
+          text?: string | null;
+          link?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "LandingPage_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -1319,6 +1354,20 @@ export interface LandingPageSelect<T extends boolean = true> {
                   };
             };
         service5?:
+          | T
+          | {
+              image?: T;
+              name?: T;
+              text?: T;
+              icon?: T;
+              services?:
+                | T
+                | {
+                    name?: T;
+                    id?: T;
+                  };
+            };
+        service6?:
           | T
           | {
               image?: T;
@@ -2127,6 +2176,29 @@ export interface ImprintPageSelect<T extends boolean = true> {
  */
 export interface PrivacyPageSelect<T extends boolean = true> {
   content?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "ToursPage_select".
+ */
+export interface ToursPageSelect<T extends boolean = true> {
+  tours?:
+    | T
+    | {
+        tours?:
+          | T
+          | {
+              type?: T;
+              name?: T;
+              icon?: T;
+              text?: T;
+              link?: T;
+              id?: T;
+            };
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

@@ -18,7 +18,7 @@ export const CTA = async () => {
         <section className="relative flex h-dvh w-full items-center justify-center">
             <Image
                 className="absolute top-0 left-0 hidden size-full object-cover md:block"
-                src={"https://punktwolkehamm.de" + ((landingPage?.cta?.image as Resource)?.url ?? "")}
+                src={"/" + ((landingPage?.cta?.image as Resource)?.url ?? "")}
                 alt={(landingPage?.cta?.image as Resource)?.alt ?? "Alternative Text"}
                 width={1920}
                 height={1080}
@@ -26,7 +26,7 @@ export const CTA = async () => {
 
             <Image
                 className="absolute top-0 left-0 block size-full object-cover md:hidden"
-                src={"https://punktwolkehamm.de" + ((landingPage?.cta?.imageMobile as Resource)?.url ?? "")}
+                src={"/" + ((landingPage?.cta?.imageMobile as Resource)?.url ?? "")}
                 alt={(landingPage?.cta?.imageMobile as Resource)?.alt ?? "Alternative Text"}
                 width={1920}
                 height={1080}
@@ -35,13 +35,10 @@ export const CTA = async () => {
             <div className="absolute top-0 left-0 size-full bg-[#001147]/39"></div>
 
             <div className="z-10001 mx-auto flex w-full max-w-7xl flex-col items-start gap-8 px-3 md:items-center">
-                <h1 className="text-[36px] leading-[39px] font-semibold text-white md:text-center md:text-[64px] md:leading-[69px]">
-                    Professionelle
-                    <br />
-                    <span className="text-[#2177E8]">Drohnenservices</span> für Ihr
-                    <br className="hidden md:block" />
-                    Unternehmen
-                </h1>
+                <h1
+                    className="text-[36px] leading-[39px] font-semibold text-white md:text-center md:text-[64px] md:leading-[69px]"
+                    dangerouslySetInnerHTML={{ __html: landingPage?.cta?.heading ?? "" }}
+                ></h1>
 
                 <p className="w-full text-xl leading-[28px] text-white md:w-4/7 md:text-center">
                     {landingPage?.cta?.text}

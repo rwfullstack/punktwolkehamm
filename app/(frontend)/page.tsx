@@ -13,8 +13,6 @@ import Link from "next/link"
 import Image from "next/image"
 import { Move3d, Move3dIcon, Play } from "lucide-react"
 
-export const dynamic = "force-dynamic"
-
 export const metadata: Metadata = {
     title: "PunktWolke Hamm - Drohnenservices",
     description:

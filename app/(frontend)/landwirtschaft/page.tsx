@@ -10,8 +10,6 @@ import { Details } from "./_components/details/Details"
 import { Gallery } from "./_components/gallery/Gallery"
 import { RichText } from "./_components/richtext/RichText"
 
-export const dynamic = "force-dynamic"
-
 export const metadata: Metadata = {
     title: "Landwirtschaft | PunktWolke Hamm",
     description:

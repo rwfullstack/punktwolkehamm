@@ -17,6 +17,7 @@ export const Process = async () => {
 
     return (
         <>
+        {/**
             <div className="w-full pt-50">
                 <div className="mx-auto flex max-w-7xl flex-row justify-between px-3">
                     <div className="flex w-full flex-col gap-5 md:w-1/2">
@@ -36,7 +37,7 @@ export const Process = async () => {
                     <Image
                         className="object-cover"
                         src={
-                            "https://punktwolkehamm.de" + ((landingPage?.process?.previewImage as Resource)?.url ?? "")
+                            "/" + ((landingPage?.process?.previewImage as Resource)?.url ?? "")
                         }
                         alt="Logo"
                         width={1920}
@@ -55,6 +56,7 @@ export const Process = async () => {
                     </div>
                 </div>
             </div>
+            */}
 
             <section className="relative mt-55 min-h-dvh w-full bg-linear-to-r from-[#053070] to-[#0D083F] pt-5">
                 <div className="top-0 mt-35 w-full bg-linear-to-r from-[#053070] to-[#0D083F] pt-5 pb-5 md:sticky">

@@ -11,8 +11,6 @@ import { Gallery } from "./_components/gallery/Gallery"
 import { Statistics } from "./_components/statistics/Statistics"
 import { Usage } from "./_components/usage/Usage"
 
-export const dynamic = "force-dynamic"
-
 export const metadata: Metadata = {
     title: "Inspektion | PunktWolke Hamm",
     description:

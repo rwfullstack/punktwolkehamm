@@ -151,7 +151,7 @@ export const BasicRequest = () => {
 
                     <p className="text-center text-sm text-black">
                         Mit dem Absenden stimmen Sie unserer{" "}
-                        <Link className="font-medium text-[#2177E8]" href="">
+                        <Link className="font-medium text-[#2177E8]" href="/datenschutz">
                             Datenschutzerklärung
                         </Link>{" "}
                         zu.

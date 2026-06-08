@@ -50,10 +50,9 @@
         "postcss.config.mjs": true,
         ".prettierrc": true,
         "app/(payload)": true,
-        ".vscode": true,
-        ".gitignore": true,
         "tsconfig.json": true,
-        "next.config.mjs": true
+        "next.config.mjs": true,
+        ".vscode": true
     },
     "hide-files.files": [
         ".next",
@@ -63,9 +62,8 @@
         "postcss.config.mjs",
         ".prettierrc",
         "app/(payload)",
-        ".vscode",
-        ".gitignore",
         "tsconfig.json",
-        "next.config.mjs"
+        "next.config.mjs",
+        ".vscode"
     ]
 }

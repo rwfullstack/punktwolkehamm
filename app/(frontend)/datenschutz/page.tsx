@@ -7,8 +7,6 @@ import { TextPageContentConverter } from "@/components/converters/TextPageConten
 import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
 import { RichText } from "@/components/RichText"
 
-export const dynamic = "force-dynamic"
-
 export const metadata: Metadata = {
     title: "Datenschutz | PunktWolke Hamm",
     description: "Hier finden Sie alle wichtigen Informationen zum Datenschutz auf unserer Website. ",

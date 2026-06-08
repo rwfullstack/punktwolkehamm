@@ -79,7 +79,7 @@ const Page = () => {
                             <div className="flex flex-col">
                                 <h2 className="mb-2 font-semibold">Telefon</h2>
 
-                                <p>+49 176 632 99 777</p>
+                                <p>+49 163 7367 877</p>
                                 <p>Mo-Fr. 08:00 - 17:00</p>
                             </div>
                         </div>
