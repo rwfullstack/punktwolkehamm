@@ -23,10 +23,7 @@ export const Gallery = async () => {
                     <div className="relative overflow-hidden rounded-3xl object-cover shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg md:col-span-2 md:row-span-2">
                         <Image
                             className="rounded-3xl object-cover md:col-span-2 md:row-span-2"
-                            src={
-                                "/" +
-                                ((content?.gallery?.images?.[0]?.image as Resource)?.url ?? "")
-                            }
+                            src={(content?.gallery?.images?.[0]?.image as Resource)?.url ?? ""}
                             alt={(content?.gallery?.images?.[0]?.image as Resource)?.alt ?? "Alternative Text"}
                             width={1920}
                             height={1080}
@@ -41,7 +38,7 @@ export const Gallery = async () => {
                         <div className="relative overflow-hidden rounded-3xl object-cover shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                             <Image
                                 className="rounded-3xl object-cover"
-                                src={"/" + ((image?.image as Resource)?.url ?? "")}
+                                src={(image?.image as Resource)?.url ?? ""}
                                 alt={(image?.image as Resource)?.alt ?? "Alternative Text"}
                                 width={1920}
                                 height={1080}

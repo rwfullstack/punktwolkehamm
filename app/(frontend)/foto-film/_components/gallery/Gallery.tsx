@@ -43,7 +43,7 @@ export const Gallery = async () => {
                         <div className="relative overflow-hidden rounded-3xl object-cover shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
                             <Image
                                 className="object-cover"
-                                src={"/" + ((image?.image as Resource)?.url ?? "")}
+                                src={(image?.image as Resource)?.url ?? ""}
                                 alt={(image?.image as Resource)?.alt ?? "Alternative Text"}
                                 width={1920}
                                 height={1080}

@@ -7,7 +7,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build --turbopack",
-        "start": "next start",
+        "start": "next start --port 3001",
         "generate": "payload generate:db-schema"
     },
     "dependencies": {

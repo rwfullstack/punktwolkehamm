@@ -36,9 +36,7 @@ export const Process = async () => {
                 <div className="relative mx-auto mt-15 aspect-video w-full max-w-7xl overflow-hidden rounded-4xl bg-black">
                     <Image
                         className="object-cover"
-                        src={
-                            "/" + ((landingPage?.process?.previewImage as Resource)?.url ?? "")
-                        }
+                        src={(landingPage?.process?.previewImage as Resource)?.url ?? ""}
                         alt="Logo"
                         width={1920}
                         height={1080}
