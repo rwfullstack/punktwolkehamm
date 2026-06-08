@@ -14,11 +14,14 @@ export const CTA = async () => {
         slug: "LandingPage"
     })
 
+    console.log(JSON.stringify(landingPage?.cta?.image))
+    console.log(JSON.stringify(landingPage?.cta?.imageMobile))
+
     return (
         <section className="relative flex h-dvh w-full items-center justify-center">
             <Image
                 className="absolute top-0 left-0 hidden size-full object-cover md:block"
-                src={"/" + ((landingPage?.cta?.image as Resource)?.url ?? "")}
+                src={(landingPage?.cta?.image as Resource)?.url ?? ""}
                 alt={(landingPage?.cta?.image as Resource)?.alt ?? "Alternative Text"}
                 width={1920}
                 height={1080}
@@ -26,7 +29,7 @@ export const CTA = async () => {
 
             <Image
                 className="absolute top-0 left-0 block size-full object-cover md:hidden"
-                src={"/" + ((landingPage?.cta?.imageMobile as Resource)?.url ?? "")}
+                src={(landingPage?.cta?.imageMobile as Resource)?.url ?? ""}
                 alt={(landingPage?.cta?.imageMobile as Resource)?.alt ?? "Alternative Text"}
                 width={1920}
                 height={1080}
