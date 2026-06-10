@@ -10,6 +10,8 @@ import { Details } from "./_components/details/Details"
 import { Gallery } from "./_components/gallery/Gallery"
 import { RichText } from "./_components/richtext/RichText"
 
+export const revalidate = false
+
 export const metadata: Metadata = {
     title: "Behörden | PunktWolke Hamm",
     description:
