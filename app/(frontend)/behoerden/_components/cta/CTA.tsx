@@ -18,8 +18,7 @@ export const CTA = async () => {
                 className="absolute top-0 left-0 hidden size-full object-cover md:block"
                 src={(content?.cta?.image as Resource)?.url ?? ""}
                 alt={(content?.cta?.image as Resource)?.alt ?? "Alternative Text"}
-                width={1920}
-                height={1080}
+                fill
                 priority
             />
 
@@ -27,9 +26,7 @@ export const CTA = async () => {
                 className="absolute top-0 left-0 block size-full object-cover md:hidden"
                 src={(content?.cta?.imageMobile as Resource)?.url ?? ""}
                 alt={(content?.cta?.imageMobile as Resource)?.alt ?? "Alternative Text"}
-                width={1920}
-                height={1080}
-                priority
+                fill
             />
 
             <div className="absolute top-0 left-0 size-full bg-[#001147]/39"></div>

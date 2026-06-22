@@ -30,9 +30,11 @@ export const Gallery = async () => {
                             height={1080}
                         />
 
-                        <div className="absolute top-0 left-0 flex size-full items-end justify-start bg-linear-to-b from-[#053070]/5 via-[#0D083F]/5 to-[#0D083F] px-5 py-1.5">
-                            <p className="text-white">{content?.gallery?.images?.[0]?.description ?? "Beschreibung"}</p>
-                        </div>
+                        {Boolean((content?.gallery?.images?.[0]?.description ?? "").trim()) && (
+                            <div className="absolute top-0 left-0 flex size-full items-end justify-start bg-linear-to-b from-[#053070]/5 via-[#0D083F]/5 to-[#0D083F] px-5 py-1.5">
+                                <p className="text-white">{content?.gallery?.images?.[0]?.description}</p>
+                            </div>
+                        )}
                     </div>
 
                     {content?.gallery?.images?.slice(1)?.map((image) => (
@@ -46,11 +48,11 @@ export const Gallery = async () => {
                                 height={1080}
                             />
 
-                            <div className="absolute top-0 left-0 flex size-full items-end justify-start bg-linear-to-b from-[#053070]/0 via-[#0D083F]/0 to-[#0D083F] px-5 py-1.5">
-                                <p className="text-white">
-                                    {content?.gallery?.images?.[0]?.description ?? "Beschreibung"}
-                                </p>
-                            </div>
+                            {Boolean((image?.description ?? "").trim()) && (
+                                <div className="absolute top-0 left-0 flex size-full items-end justify-start bg-linear-to-b from-[#053070]/0 via-[#0D083F]/0 to-[#0D083F] px-5 py-1.5">
+                                    <p className="text-white">{image?.description}</p>
+                                </div>
+                            )}
                         </div>
                     ))}
                 </div>
