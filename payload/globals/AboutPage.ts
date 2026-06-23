@@ -1,13 +1,9 @@
 import { GlobalConfig } from "payload"
 
-import { ARRAY_FIELD } from "../utilities/fields/ArrayField"
-import { COLLAPSIBLE_FIELD } from "../utilities/fields/CollapsibleField"
-import { NAMED_GROUP_FIELD } from "../utilities/fields/GroupField"
-import { ROW_FIELD } from "../utilities/fields/RowField"
+import { CONTENT_BLOCKS_FIELD } from "../utilities/fields/ContentBlockFields"
 import { TEXT_AREA_FIELD } from "../utilities/fields/TextAreaField"
-import { UPLOAD_FIELD } from "../utilities/fields/UploadField"
+import { TEXT_FIELD } from "../utilities/fields/TextField"
 import { Global_Options } from "../utilities/globals/Global"
-import { CHECK_BOX_FIELD } from "../utilities/fields/CheckBoxField"
 
 export const AboutPageGlobal: GlobalConfig = Global_Options(
     "AboutPage",
@@ -17,5 +13,9 @@ export const AboutPageGlobal: GlobalConfig = Global_Options(
             group: "Unterseiten"
         }
     },
-    [{ type: "richText", name: "content", label: "Inhalt" }]
+    [
+        TEXT_FIELD("Titel", "title"),
+        TEXT_AREA_FIELD("Beschreibung (SEO)", "description"),
+        CONTENT_BLOCKS_FIELD
+    ]
 )

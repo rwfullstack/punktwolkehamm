@@ -1,5 +1,4 @@
-import Image from "next/image"
-
+import { ResourceImage } from "@/components/media/ResourceImage"
 import { Resource } from "@/payload/payload-types"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
@@ -7,7 +6,8 @@ export const Gallery = async () => {
     const payload = await GetPayload()
 
     const content = await payload.findGlobal({
-        slug: "OfficePage"
+        slug: "OfficePage",
+        depth: 1
     })
 
     return (
@@ -20,11 +20,11 @@ export const Gallery = async () => {
                 <p className="text-md w-full text-[#4A5565] md:w-2/3">{content?.gallery?.text}</p>
 
                 <div className="mt-15 grid grid-cols-1 gap-5 md:grid-cols-3 md:grid-rows-2">
-                    <div className="relative overflow-hidden rounded-3xl object-cover shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg md:col-span-2 md:row-span-2">
-                        <Image
-                            className="rounded-3xl object-cover md:col-span-2 md:row-span-2"
-                            src={(content?.gallery?.images?.[0]?.image as Resource)?.url ?? ""}
-                            alt={(content?.gallery?.images?.[0]?.image as Resource)?.alt ?? "Alternative Text"}
+                    <div className="relative overflow-hidden rounded-3xl shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg md:col-span-2 md:row-span-2">
+                        <ResourceImage
+                            resource={content?.gallery?.images?.[0]?.image as Resource}
+                            variant="gallery"
+                            className="rounded-3xl object-cover"
                             width={1920}
                             height={1080}
                         />
@@ -37,11 +37,14 @@ export const Gallery = async () => {
                     </div>
 
                     {content?.gallery?.images?.slice(1).map((image) => (
-                        <div className="relative overflow-hidden rounded-3xl object-cover shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
-                            <Image
+                        <div
+                            key={image?.id}
+                            className="relative overflow-hidden rounded-3xl shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg"
+                        >
+                            <ResourceImage
+                                resource={image?.image as Resource}
+                                variant="gallery"
                                 className="rounded-3xl object-cover"
-                                src={(image?.image as Resource)?.url ?? ""}
-                                alt={(image?.image as Resource)?.alt ?? "Alternative Text"}
                                 width={1920}
                                 height={1080}
                             />

@@ -70,6 +70,7 @@ export interface Config {
     Users: User;
     Resources: Resource;
     Messages: Message;
+    InfoPages: InfoPage;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     Users: UsersSelect<false> | UsersSelect<true>;
     Resources: ResourcesSelect<false> | ResourcesSelect<true>;
     Messages: MessagesSelect<false> | MessagesSelect<true>;
+    InfoPages: InfoPagesSelect<false> | InfoPagesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -201,6 +203,43 @@ export interface Message {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfoPages".
+ */
+export interface InfoPage {
+  id: string;
+  title?: string | null;
+  /**
+   * URL-Pfad ohne führenden Slash, z. B. meine-seite oder info/ueber-uns
+   */
+  path: string;
+  description?: string | null;
+  blocks?:
+    | {
+        layout?: ('textOnly' | 'imageLeft' | 'imageRight') | null;
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        image?: (string | null) | Resource;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -234,6 +273,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'Messages';
         value: string | Message;
+      } | null)
+    | ({
+        relationTo: 'InfoPages';
+        value: string | InfoPage;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -328,6 +371,25 @@ export interface MessagesSelect<T extends boolean = true> {
   lastName?: T;
   email?: T;
   message?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "InfoPages_select".
+ */
+export interface InfoPagesSelect<T extends boolean = true> {
+  title?: T;
+  path?: T;
+  description?: T;
+  blocks?:
+    | T
+    | {
+        layout?: T;
+        content?: T;
+        image?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
@@ -631,6 +693,10 @@ export interface MeasurementPage {
           icon?: string | null;
           title?: string | null;
           text?: string | null;
+          linkAvailable?: boolean | null;
+          linkText?: string | null;
+          linkIcon?: string | null;
+          infoPage?: (string | null) | InfoPage;
           id?: string | null;
         }[]
       | null;
@@ -741,6 +807,10 @@ export interface InspectionPage {
           icon?: string | null;
           title?: string | null;
           text?: string | null;
+          linkAvailable?: boolean | null;
+          linkText?: string | null;
+          linkIcon?: string | null;
+          infoPage?: (string | null) | InfoPage;
           id?: string | null;
         }[]
       | null;
@@ -836,8 +906,9 @@ export interface ImagePage {
           title?: string | null;
           text?: string | null;
           linkAvailable?: boolean | null;
-          link?: string | null;
           linkText?: string | null;
+          linkIcon?: string | null;
+          infoPage?: (string | null) | InfoPage;
           id?: string | null;
         }[]
       | null;
@@ -969,6 +1040,10 @@ export interface AgriculturePage {
           icon?: string | null;
           title?: string | null;
           text?: string | null;
+          linkAvailable?: boolean | null;
+          linkText?: string | null;
+          linkIcon?: string | null;
+          infoPage?: (string | null) | InfoPage;
           id?: string | null;
         }[]
       | null;
@@ -1062,6 +1137,10 @@ export interface OfficePage {
           icon?: string | null;
           title?: string | null;
           text?: string | null;
+          linkAvailable?: boolean | null;
+          linkText?: string | null;
+          linkIcon?: string | null;
+          infoPage?: (string | null) | InfoPage;
           id?: string | null;
         }[]
       | null;
@@ -1147,21 +1226,30 @@ export interface ConditionsPage {
  */
 export interface AboutPage {
   id: string;
-  content?: {
-    root: {
-      type: string;
-      children: {
-        type: any;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  title?: string | null;
+  description?: string | null;
+  blocks?:
+    | {
+        layout?: ('textOnly' | 'imageLeft' | 'imageRight') | null;
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: any;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        image?: (string | null) | Resource;
+        id?: string | null;
+      }[]
+    | null;
   updatedAt?: string | null;
   createdAt?: string | null;
 }
@@ -1560,6 +1648,10 @@ export interface MeasurementPageSelect<T extends boolean = true> {
               icon?: T;
               title?: T;
               text?: T;
+              linkAvailable?: T;
+              linkText?: T;
+              linkIcon?: T;
+              infoPage?: T;
               id?: T;
             };
       };
@@ -1690,6 +1782,10 @@ export interface InspectionPageSelect<T extends boolean = true> {
               icon?: T;
               title?: T;
               text?: T;
+              linkAvailable?: T;
+              linkText?: T;
+              linkIcon?: T;
+              infoPage?: T;
               id?: T;
             };
       };
@@ -1803,8 +1899,9 @@ export interface ImagePageSelect<T extends boolean = true> {
               title?: T;
               text?: T;
               linkAvailable?: T;
-              link?: T;
               linkText?: T;
+              linkIcon?: T;
+              infoPage?: T;
               id?: T;
             };
       };
@@ -1964,6 +2061,10 @@ export interface AgriculturePageSelect<T extends boolean = true> {
               icon?: T;
               title?: T;
               text?: T;
+              linkAvailable?: T;
+              linkText?: T;
+              linkIcon?: T;
+              infoPage?: T;
               id?: T;
             };
       };
@@ -2075,6 +2176,10 @@ export interface OfficePageSelect<T extends boolean = true> {
               icon?: T;
               title?: T;
               text?: T;
+              linkAvailable?: T;
+              linkText?: T;
+              linkIcon?: T;
+              infoPage?: T;
               id?: T;
             };
       };
@@ -2155,7 +2260,16 @@ export interface ConditionsPageSelect<T extends boolean = true> {
  * via the `definition` "AboutPage_select".
  */
 export interface AboutPageSelect<T extends boolean = true> {
-  content?: T;
+  title?: T;
+  description?: T;
+  blocks?:
+    | T
+    | {
+        layout?: T;
+        content?: T;
+        image?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
   globalType?: T;

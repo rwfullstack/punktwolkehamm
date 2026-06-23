@@ -7,6 +7,7 @@ import { postgresAdapter } from "@payloadcms/db-postgres"
 import { lexicalEditor } from "@payloadcms/richtext-lexical"
 import { de } from "@payloadcms/translations/languages/de"
 
+import { InfoPages } from "./collections/InfoPages"
 import { Messages } from "./collections/Messages"
 import { Resources } from "./collections/Resources"
 import { Users } from "./collections/Users"
@@ -48,7 +49,7 @@ export default buildConfig({
         ToursPageGlobal
     ],
 
-    collections: [Users, Resources, Messages],
+    collections: [Users, Resources, Messages, InfoPages],
 
     admin: {
         user: Users.slug,

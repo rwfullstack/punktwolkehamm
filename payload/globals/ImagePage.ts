@@ -7,7 +7,7 @@ import { ROW_FIELD } from "../utilities/fields/RowField"
 import { TEXT_AREA_FIELD } from "../utilities/fields/TextAreaField"
 import { UPLOAD_FIELD } from "../utilities/fields/UploadField"
 import { Global_Options } from "../utilities/globals/Global"
-import { CHECK_BOX_FIELD } from "../utilities/fields/CheckBoxField"
+import { INFO_PAGE_LINK_FIELDS } from "../utilities/fields/InfoPageLinkFields"
 
 export const ImagePageGlobal: GlobalConfig = Global_Options(
     "ImagePage",
@@ -71,8 +71,7 @@ export const ImagePageGlobal: GlobalConfig = Global_Options(
 
                     TEXT_AREA_FIELD("Text", "text"),
 
-                    CHECK_BOX_FIELD("Verlinkung", "linkAvailable"),
-                    ROW_FIELD([TEXT_AREA_FIELD("Link", "link"), TEXT_AREA_FIELD("Text", "linkText")])
+                    ...INFO_PAGE_LINK_FIELDS
                 ])
             ])
         ]),

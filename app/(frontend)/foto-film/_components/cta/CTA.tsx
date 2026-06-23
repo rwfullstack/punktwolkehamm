@@ -1,7 +1,7 @@
-import Image from "next/image"
 import Link from "next/link"
 
 import { DynamicIcon } from "@/components/DynamicIcon"
+import { HeroBackgroundImage } from "@/components/media/HeroBackgroundImage"
 import { Resource } from "@/payload/payload-types"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
@@ -9,25 +9,19 @@ export const CTA = async () => {
     const payload = await GetPayload()
 
     const content = await payload.findGlobal({
-        slug: "ImagePage"
+        slug: "ImagePage",
+        depth: 1
     })
 
     return (
-        <section className="relative flex h-dvh w-full items-center">
-            <Image
-                className="absolute top-0 left-0 hidden size-full object-cover md:block"
-                src={(content?.cta?.image as Resource)?.url ?? ""}
-                alt={(content?.cta?.image as Resource)?.alt ?? "Alternative Text"}
-                fill
-                priority
-            />
-
-            <Image
-                className="absolute top-0 left-0 block size-full object-cover md:hidden"
-                src={(content?.cta?.imageMobile as Resource)?.url ?? ""}
-                alt={(content?.cta?.imageMobile as Resource)?.alt ?? "Alternative Text"}
-                fill
-            />
+        <section className="relative flex h-dvh w-full items-center bg-[#053070]">
+            <div className="absolute inset-0">
+                <HeroBackgroundImage
+                    desktop={content?.cta?.image as Resource}
+                    mobile={content?.cta?.imageMobile as Resource}
+                    priority
+                />
+            </div>
 
             <div className="absolute top-0 left-0 size-full bg-[#001147]/39"></div>
 
@@ -47,11 +41,11 @@ export const CTA = async () => {
                 <div className="flex items-center gap-3">
                     <Link href="/kontakt">
                         <button className="flex h-12 cursor-pointer items-center gap-2 rounded-xl bg-[#2177E8] px-5 font-medium text-white shadow-md transition-all duration-250 hover:scale-105 hover:shadow-lg">
-                            <span>{content?.cta?.appointmentButton?.text ?? ""}</span>
+                            <span>{content?.cta?.appointmentButton?.text}</span>
 
                             <DynamicIcon
-                                icon={content?.cta?.appointmentButton?.icon as string}
                                 className="size-4"
+                                icon={content?.cta?.appointmentButton?.icon}
                                 strokeWidth={2.5}
                             />
                         </button>

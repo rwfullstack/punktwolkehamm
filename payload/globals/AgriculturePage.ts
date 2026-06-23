@@ -6,6 +6,7 @@ import { NAMED_GROUP_FIELD } from "../utilities/fields/GroupField"
 import { ROW_FIELD } from "../utilities/fields/RowField"
 import { TEXT_AREA_FIELD } from "../utilities/fields/TextAreaField"
 import { UPLOAD_FIELD } from "../utilities/fields/UploadField"
+import { INFO_PAGE_LINK_FIELDS } from "../utilities/fields/InfoPageLinkFields"
 import { Global_Options } from "../utilities/globals/Global"
 
 export const AgriculturePageGlobal: GlobalConfig = Global_Options(
@@ -95,7 +96,9 @@ export const AgriculturePageGlobal: GlobalConfig = Global_Options(
                 ARRAY_FIELD("Details", "details", [
                     ROW_FIELD([TEXT_AREA_FIELD("Icon", "icon"), TEXT_AREA_FIELD("Titel", "title")]),
 
-                    TEXT_AREA_FIELD("Text", "text")
+                    TEXT_AREA_FIELD("Text", "text"),
+
+                    ...INFO_PAGE_LINK_FIELDS
                 ])
             ])
         ]),

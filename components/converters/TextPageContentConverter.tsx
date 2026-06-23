@@ -1,7 +1,8 @@
 import { Resource } from "@/payload/payload-types"
-import { DefaultNodeTypes, SerializedBlockNode } from "@payloadcms/richtext-lexical"
-import { JSXConvertersFunction, LinkJSXConverter } from "@payloadcms/richtext-lexical/react"
-import Image from "next/image"
+import { DefaultNodeTypes } from "@payloadcms/richtext-lexical"
+import { JSXConvertersFunction } from "@payloadcms/richtext-lexical/react"
+
+import { ResourceImage } from "@/components/media/ResourceImage"
 
 type NodeTypes = DefaultNodeTypes
 
@@ -42,19 +43,17 @@ export const TextPageContentConverter: JSXConvertersFunction<NodeTypes> = ({ def
         return <li className="list-inside list-disc pt-1">{text}</li>
     },
 
-    upload: ({ node, nodesToJSX }) => {
+    upload: ({ node }) => {
         const image = node.value as Resource
 
-        if (!image?.url) return undefined
+        if (!image?.url) {
+            return undefined
+        }
 
         return (
-            <Image
-                className="rounded-3xl"
-                src={image.url}
-                alt={image.alt ?? "Alternative Text"}
-                width={image.width ?? 1920}
-                height={image.height ?? 1080}
-            />
+            <div className="relative my-4 aspect-4/3 w-full overflow-hidden rounded-3xl md:aspect-video">
+                <ResourceImage resource={image} variant="inline" fill className="object-cover" />
+            </div>
         )
     },
 

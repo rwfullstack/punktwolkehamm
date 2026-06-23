@@ -1,6 +1,8 @@
 import { ArrowUpRight } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
+
+import { ResourceImage } from "@/components/media/ResourceImage"
+import { getResourceUrl } from "@/lib/getResourceUrl"
 
 import { DynamicIcon } from "../DynamicIcon"
 import { ViewAnimation } from "../ViewAnimation"
@@ -24,13 +26,15 @@ export const ServiceCard = ({ name, text, image, alt, icon, href, services }: Pr
                         <DynamicIcon icon={icon} />
                     </div>
 
-                    <Image
-                        className="h-55 w-full object-center transition-transform duration-250 ease-in-out group-hover/card:scale-105"
-                        src={image}
-                        alt={alt}
-                        width={1920}
-                        height={1080}
-                    />
+                    <div className="relative h-55 w-full overflow-hidden">
+                        <ResourceImage
+                            url={getResourceUrl(image)}
+                            alt={alt}
+                            variant="card"
+                            fill
+                            className="object-cover object-center transition-transform duration-250 ease-in-out group-hover/card:scale-105"
+                        />
+                    </div>
 
                     <div className="flex flex-col gap-3 bg-[#F9FAFB] px-6 py-5">
                         <div className="flex items-center justify-between">

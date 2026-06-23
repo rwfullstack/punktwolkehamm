@@ -4,8 +4,7 @@ import { DynamicIcon } from "../DynamicIcon"
 import { ViewAnimation } from "../ViewAnimation"
 import { Move3d, Move3dIcon, Play } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
-import { Content } from "next/font/google"
+import { ResourceImage } from "@/components/media/ResourceImage"
 import { Resource } from "@/payload/payload-types"
 
 export const Process = async () => {
@@ -34,12 +33,11 @@ export const Process = async () => {
                 </div>
 
                 <div className="relative mx-auto mt-15 aspect-video w-full max-w-7xl overflow-hidden rounded-4xl bg-black">
-                    <Image
+                    <ResourceImage
+                        resource={landingPage?.process?.previewImage as Resource}
+                        variant="inline"
+                        fill
                         className="object-cover"
-                        src={(landingPage?.process?.previewImage as Resource)?.url ?? ""}
-                        alt="Logo"
-                        width={1920}
-                        height={1080}
                     />
 
                     <div className="absolute top-0 left-0 flex size-full items-center justify-center bg-linear-to-b from-[#053070]/0 via-[#0D083F]/0 to-[#0D083F] px-5 py-1.5">

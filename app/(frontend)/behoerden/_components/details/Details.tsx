@@ -1,13 +1,12 @@
-import Image from "next/image"
-
-import { DynamicIcon } from "@/components/DynamicIcon"
+import { DetailItem, DetailItemCard } from "@/components/details/DetailItemCard"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
 export const Details = async () => {
     const payload = await GetPayload()
 
     const content = await payload.findGlobal({
-        slug: "OfficePage"
+        slug: "OfficePage",
+        depth: 2
     })
 
     return (
@@ -19,20 +18,7 @@ export const Details = async () => {
 
                 <ol className="mt-10 grid w-full gap-5 md:grid-cols-2">
                     {content?.details?.details?.map((detail) => (
-                        <li
-                            className="flex flex-col gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg"
-                            key={detail?.id}
-                        >
-                            <DynamicIcon
-                                icon={detail?.icon as string}
-                                className="size-14 rounded-xl bg-[#2177E8]/10 p-4 text-[#2177E8]"
-                                strokeWidth={2.5}
-                            />
-
-                            <h3 className="text-xl font-semibold">{detail?.title}</h3>
-
-                            <p className="text-md text-[#4A5565]">{detail?.text}</p>
-                        </li>
+                        <DetailItemCard key={detail?.id} detail={detail as DetailItem} />
                     ))}
                 </ol>
             </div>

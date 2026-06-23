@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { Resource } from "@/payload/payload-types"
+import { getResourceUrl } from "@/lib/getResourceUrl"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
 import { ViewAnimation } from "../ViewAnimation"
@@ -35,7 +36,7 @@ export const Services = async () => {
                     <ServiceCard
                         name={landingPage?.services?.service1?.name ?? ""}
                         text={landingPage?.services?.service1?.text ?? ""}
-                        image={(landingPage?.services?.service1?.image as Resource)?.url ?? ""}
+                        image={getResourceUrl((landingPage?.services?.service1?.image as Resource)?.url)}
                         alt={(landingPage?.services?.service1?.image as Resource)?.alt ?? "Alternative Text"}
                         icon={landingPage?.services?.service1?.icon ?? ""}
                         href={"/vermessung"}
@@ -45,7 +46,7 @@ export const Services = async () => {
                     <ServiceCard
                         name={landingPage?.services?.service2?.name ?? ""}
                         text={landingPage?.services?.service2?.text ?? ""}
-                        image={(landingPage?.services?.service2?.image as Resource)?.url ?? ""}
+                        image={getResourceUrl((landingPage?.services?.service2?.image as Resource)?.url)}
                         alt={(landingPage?.services?.service2?.image as Resource)?.alt ?? "Alternative Text"}
                         icon={landingPage?.services?.service2?.icon ?? ""}
                         href={"/inspektion"}
@@ -55,7 +56,7 @@ export const Services = async () => {
                     <ServiceCard
                         name={landingPage?.services?.service3?.name ?? ""}
                         text={landingPage?.services?.service3?.text ?? ""}
-                        image={(landingPage?.services?.service3?.image as Resource)?.url ?? ""}
+                        image={getResourceUrl((landingPage?.services?.service3?.image as Resource)?.url)}
                         alt={(landingPage?.services?.service3?.image as Resource)?.alt ?? "Alternative Text"}
                         icon={landingPage?.services?.service3?.icon ?? ""}
                         href={"/foto-film"}
@@ -65,7 +66,7 @@ export const Services = async () => {
                     <ServiceCard
                         name={landingPage?.services?.service4?.name ?? ""}
                         text={landingPage?.services?.service4?.text ?? ""}
-                        image={(landingPage?.services?.service4?.image as Resource)?.url ?? ""}
+                        image={getResourceUrl((landingPage?.services?.service4?.image as Resource)?.url)}
                         alt={(landingPage?.services?.service4?.image as Resource)?.alt ?? "Alternative Text"}
                         icon={landingPage?.services?.service4?.icon ?? ""}
                         href={"/landwirtschaft"}
@@ -75,7 +76,7 @@ export const Services = async () => {
                     <ServiceCard
                         name={landingPage?.services?.service5?.name ?? ""}
                         text={landingPage?.services?.service5?.text ?? ""}
-                        image={(landingPage?.services?.service5?.image as Resource)?.url ?? ""}
+                        image={getResourceUrl((landingPage?.services?.service5?.image as Resource)?.url)}
                         alt={(landingPage?.services?.service5?.image as Resource)?.alt ?? "Alternative Text"}
                         icon={landingPage?.services?.service5?.icon ?? ""}
                         href={"/behoerden"}
@@ -85,7 +86,7 @@ export const Services = async () => {
                     <ServiceCard
                         name={landingPage?.services?.service6?.name ?? ""}
                         text={landingPage?.services?.service6?.text ?? ""}
-                        image={(landingPage?.services?.service6?.image as Resource)?.url ?? ""}
+                        image={getResourceUrl((landingPage?.services?.service6?.image as Resource)?.url)}
                         alt={(landingPage?.services?.service6?.image as Resource)?.alt ?? "Alternative Text"}
                         icon={landingPage?.services?.service6?.icon ?? ""}
                         href={"/virtuelle-touren"}

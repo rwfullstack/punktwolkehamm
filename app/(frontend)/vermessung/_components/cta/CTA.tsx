@@ -1,7 +1,7 @@
-import Image from "next/image"
 import Link from "next/link"
 
 import { DynamicIcon } from "@/components/DynamicIcon"
+import { HeroBackgroundImage } from "@/components/media/HeroBackgroundImage"
 import { Resource } from "@/payload/payload-types"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
@@ -9,25 +9,19 @@ export const CTA = async () => {
     const payload = await GetPayload()
 
     const landingPage = await payload.findGlobal({
-        slug: "MeasurementPage"
+        slug: "MeasurementPage",
+        depth: 1
     })
 
     return (
-        <section className="relative flex h-dvh w-full items-center">
-            <Image
-                className="absolute top-0 left-0 hidden size-full object-cover md:block"
-                src={(landingPage?.cta?.image as Resource)?.url ?? ""}
-                alt={(landingPage?.cta?.image as Resource)?.alt ?? "Alternative Text"}
-                fill
-                priority
-            />
-
-            <Image
-                className="absolute top-0 left-0 block size-full object-cover md:hidden"
-                src={(landingPage?.cta?.imageMobile as Resource)?.url ?? ""}
-                alt={(landingPage?.cta?.imageMobile as Resource)?.alt ?? "Alternative Text"}
-                fill
-            />
+        <section className="relative flex h-dvh w-full items-center bg-[#053070]">
+            <div className="absolute inset-0">
+                <HeroBackgroundImage
+                    desktop={landingPage?.cta?.image as Resource}
+                    mobile={landingPage?.cta?.imageMobile as Resource}
+                    priority
+                />
+            </div>
 
             <div className="absolute top-0 left-0 size-full bg-[#001147]/39"></div>
 

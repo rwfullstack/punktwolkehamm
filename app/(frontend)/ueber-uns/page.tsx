@@ -1,42 +1,53 @@
-import { ArrowRight } from "lucide-react"
 import { Metadata } from "next"
-import Link from "next/link"
 
+import { Contact } from "@/components/contact/Contact"
+import { ContentBlocks } from "@/components/content-blocks/ContentBlocks"
 import { Footer } from "@/components/footer/Footer"
 import { Header } from "@/components/header/Header"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
-import { TextPageContentConverter } from "@/components/converters/TextPageContentConverter"
-import { RichText } from "@/components/RichText"
-import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
+import type { AboutPageContent } from "@/payload/utilities/content-blocks/aboutPageTypes"
 
-export const metadata: Metadata = {
-    title: "Über uns | PunktWolke Hamm",
-    description: "Hier finden Sie alle wichtigen Informationen zu unserer Firma.",
-    keywords:
-        "PunktWolke Hamm, Drohnenservices, Drohnen, Hamm, Drohnenflüge, Drohnenbeobachtung, Drohnenaufnahme, Drohnenbeobachtung, Drohnenaufnahme, Drohnenbeobachtung, Drohnenaufnahme",
-    openGraph: {
-        title: "PunktWolke Hamm - Drohnenservices",
-        description: "Das Impressum für PunktWolke Hamm. Hier finden Sie alle wichtigen Informationen zu unserer Firma."
+export const generateMetadata = async (): Promise<Metadata> => {
+    const payload = await GetPayload()
+
+    const content = (await payload.findGlobal({
+        slug: "AboutPage"
+    })) as AboutPageContent
+
+    const title = content?.title ?? "Über uns"
+    const description =
+        content?.description ??
+        "Hier finden Sie alle wichtigen Informationen zu unserer Firma."
+
+    return {
+        title: `${title} | PunktWolke Hamm`,
+        description,
+        openGraph: {
+            title: `${title} | PunktWolke Hamm`,
+            description
+        }
     }
 }
 
 const Page = async () => {
     const payload = await GetPayload()
 
-    const content = await payload.findGlobal({
-        slug: "AboutPage"
-    })
+    const content = (await payload.findGlobal({
+        slug: "AboutPage",
+        depth: 1
+    })) as AboutPageContent
 
     return (
         <>
             <Header />
 
-            <main className="w-full bg-linear-to-r from-[#053070] to-[#0D083F] py-40 text-white">
-                <div className="mx-auto flex max-w-7xl flex-col gap-5 px-3">
-                    <RichText data={content?.content as SerializedEditorState} converter={TextPageContentConverter} />
+            <main className="w-full bg-linear-to-r from-[#053070] to-[#0D083F] py-24 text-white md:py-40">
+                <div className="mx-auto flex max-w-7xl flex-col gap-8 px-3">
+                    <ContentBlocks blocks={content?.blocks} />
                 </div>
             </main>
 
+            <Contact />
             <Footer margin={false} />
         </>
     )
