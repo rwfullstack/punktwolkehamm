@@ -1,4 +1,5 @@
 import "@/app/(frontend)/globals.css"
+import { Metadata } from "next"
 
 import { Montserrat } from "next/font/google"
 import { ReactNode } from "react"
@@ -8,6 +9,12 @@ const montserrat = Montserrat({
     variable: "--font-montserrat",
     weight: ["300", "400", "500", "600", "700", "800", "900"]
 })
+
+export const metadata: Metadata = {
+    icons: {
+        icon: "/fav.png"
+    }
+}
 
 interface LayoutProperties {
     children?: ReactNode
