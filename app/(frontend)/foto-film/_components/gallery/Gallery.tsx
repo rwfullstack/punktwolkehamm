@@ -26,7 +26,7 @@ export const Gallery = async () => {
                         <ResourceImage
                             resource={content?.gallery?.thumbnail as Resource}
                             variant="gallery"
-                            className="object-cover"
+                            className="h-full w-full object-cover"
                             width={1920}
                             height={1080}
                         />
@@ -48,7 +48,7 @@ export const Gallery = async () => {
                             <ResourceImage
                                 resource={image?.image as Resource}
                                 variant="gallery"
-                                className="object-cover"
+                                className="h-full w-full object-cover"
                                 width={1920}
                                 height={1080}
                             />
