@@ -21,10 +21,10 @@ export const Contact = () => {
                 </Link>
 
                 <div className="mt-10 flex flex-col items-center gap-x-5 gap-y-2.5 md:flex-row">
-                    <Link className="transition-transform duration-250 hover:scale-105" href="tel:+4917663299777">
+                    <Link className="transition-transform duration-250 hover:scale-105" href="tel:+491637367877">
                         <p className="flex items-center gap-2 text-white">
                             <Phone className="size-4" />
-                            <span>+49 176 632 99 777</span>
+                            <span>+49 163 7367 877</span>
                         </p>
                     </Link>
 
