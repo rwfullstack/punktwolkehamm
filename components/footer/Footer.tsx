@@ -71,6 +71,10 @@ export const Footer = ({ margin = true }: Properties) => {
                                 <li>
                                     <Link href="/behoerden">Behörden</Link>
                                 </li>
+
+                                <li>
+                                    <Link href="/schulungen">Schulungen</Link>
+                                </li>
                             </ol>
                         </li>
 

@@ -102,6 +102,7 @@ export interface Config {
     ImprintPage: ImprintPage;
     PrivacyPage: PrivacyPage;
     ToursPage: ToursPage;
+    TrainingPage: TrainingPage;
   };
   globalsSelect: {
     LandingPage: LandingPageSelect<false> | LandingPageSelect<true>;
@@ -115,6 +116,7 @@ export interface Config {
     ImprintPage: ImprintPageSelect<false> | ImprintPageSelect<true>;
     PrivacyPage: PrivacyPageSelect<false> | PrivacyPageSelect<true>;
     ToursPage: ToursPageSelect<false> | ToursPageSelect<true>;
+    TrainingPage: TrainingPageSelect<false> | TrainingPageSelect<true>;
   };
   locale: null;
   user: User & {
@@ -540,6 +542,18 @@ export interface LandingPage {
         | null;
     };
     service6?: {
+      image?: (string | null) | Resource;
+      name?: string | null;
+      text?: string | null;
+      icon?: string | null;
+      services?:
+        | {
+            name?: string | null;
+            id?: string | null;
+          }[]
+        | null;
+    };
+    service7?: {
       image?: (string | null) | Resource;
       name?: string | null;
       text?: string | null;
@@ -1324,6 +1338,130 @@ export interface ToursPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TrainingPage".
+ */
+export interface TrainingPage {
+  id: string;
+  cta?: {
+    image?: (string | null) | Resource;
+    imageMobile?: (string | null) | Resource;
+    name?: string | null;
+    title?: string | null;
+    subtitle?: string | null;
+    appointmentButton?: {
+      text?: string | null;
+      icon?: string | null;
+    };
+  };
+  information?: {
+    title?: string | null;
+    subtitle?: string | null;
+    texts?:
+      | {
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    details?:
+      | {
+          detail?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    block?: {
+      icon?: string | null;
+      title?: string | null;
+      subtitle?: string | null;
+      statistic1?: {
+        name?: string | null;
+        value?: string | null;
+      };
+      statistic2?: {
+        name?: string | null;
+        value?: string | null;
+      };
+      statistic3?: {
+        name?: string | null;
+        value?: string | null;
+      };
+      statistic4?: {
+        name?: string | null;
+        value?: string | null;
+      };
+    };
+  };
+  gallery?: {
+    title?: string | null;
+    subtitle?: string | null;
+    text?: string | null;
+    images?:
+      | {
+          image?: (string | null) | Resource;
+          description?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  details?: {
+    title?: string | null;
+    subtitle?: string | null;
+    details?:
+      | {
+          icon?: string | null;
+          title?: string | null;
+          text?: string | null;
+          linkAvailable?: boolean | null;
+          linkText?: string | null;
+          linkIcon?: string | null;
+          infoPage?: (string | null) | InfoPage;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  richtext?: {
+    title?: string | null;
+    subtitle?: string | null;
+    texts?:
+      | {
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+    blocks?:
+      | {
+          value?: string | null;
+          title?: string | null;
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  benefits?: {
+    title?: string | null;
+    subtitle?: string | null;
+    text?: string | null;
+    benefits?:
+      | {
+          text?: string | null;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  contact?: {
+    title?: string | null;
+    subtitle?: string | null;
+    appointmentButton?: {
+      text?: string | null;
+      icon?: string | null;
+    };
+    phone?: string | null;
+    mail?: string | null;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "LandingPage_select".
  */
 export interface LandingPageSelect<T extends boolean = true> {
@@ -1456,6 +1594,20 @@ export interface LandingPageSelect<T extends boolean = true> {
                   };
             };
         service6?:
+          | T
+          | {
+              image?: T;
+              name?: T;
+              text?: T;
+              icon?: T;
+              services?:
+                | T
+                | {
+                    name?: T;
+                    id?: T;
+                  };
+            };
+        service7?:
           | T
           | {
               image?: T;
@@ -2312,6 +2464,158 @@ export interface ToursPageSelect<T extends boolean = true> {
               link?: T;
               id?: T;
             };
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "TrainingPage_select".
+ */
+export interface TrainingPageSelect<T extends boolean = true> {
+  cta?:
+    | T
+    | {
+        image?: T;
+        imageMobile?: T;
+        name?: T;
+        title?: T;
+        subtitle?: T;
+        appointmentButton?:
+          | T
+          | {
+              text?: T;
+              icon?: T;
+            };
+      };
+  information?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        texts?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        details?:
+          | T
+          | {
+              detail?: T;
+              id?: T;
+            };
+        block?:
+          | T
+          | {
+              icon?: T;
+              title?: T;
+              subtitle?: T;
+              statistic1?:
+                | T
+                | {
+                    name?: T;
+                    value?: T;
+                  };
+              statistic2?:
+                | T
+                | {
+                    name?: T;
+                    value?: T;
+                  };
+              statistic3?:
+                | T
+                | {
+                    name?: T;
+                    value?: T;
+                  };
+              statistic4?:
+                | T
+                | {
+                    name?: T;
+                    value?: T;
+                  };
+            };
+      };
+  gallery?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        text?: T;
+        images?:
+          | T
+          | {
+              image?: T;
+              description?: T;
+              id?: T;
+            };
+      };
+  details?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        details?:
+          | T
+          | {
+              icon?: T;
+              title?: T;
+              text?: T;
+              linkAvailable?: T;
+              linkText?: T;
+              linkIcon?: T;
+              infoPage?: T;
+              id?: T;
+            };
+      };
+  richtext?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        texts?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+        blocks?:
+          | T
+          | {
+              value?: T;
+              title?: T;
+              text?: T;
+              id?: T;
+            };
+      };
+  benefits?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        text?: T;
+        benefits?:
+          | T
+          | {
+              text?: T;
+              id?: T;
+            };
+      };
+  contact?:
+    | T
+    | {
+        title?: T;
+        subtitle?: T;
+        appointmentButton?:
+          | T
+          | {
+              text?: T;
+              icon?: T;
+            };
+        phone?: T;
+        mail?: T;
       };
   updatedAt?: T;
   createdAt?: T;

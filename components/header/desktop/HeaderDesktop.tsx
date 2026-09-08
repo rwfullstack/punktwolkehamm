@@ -42,7 +42,7 @@ export const HeaderDesktop = () => {
                 </Link>
 
                 <nav
-                    className={`mx-auto flex h-10.5 items-center gap-2 rounded-xl px-4 font-medium ${isScrolled ? "bg-black/20 text-white" : "bg-white/30 text-white"} shadow-md transition-all duration-250 ease-in-out hover:shadow-lg max-xl:absolute max-xl:top-20`}
+                    className={`mx-auto flex h-10.5 items-center gap-1.5 rounded-xl px-3 text-sm font-medium xl:gap-2 xl:px-4 xl:text-base ${isScrolled ? "bg-black/20 text-white" : "bg-white/30 text-white"} shadow-md transition-all duration-250 ease-in-out hover:shadow-lg max-xl:absolute max-xl:top-20`}
                 >
                     <Link
                         className={`transition-all duration-250 ease-in-out ${pathname === "/vermessung" ? "text-[#2177E8]" : "text-white"} hover:text-[#2177E8]`}
@@ -77,6 +77,13 @@ export const HeaderDesktop = () => {
                         href="/behoerden"
                     >
                         Behörden
+                    </Link>
+
+                    <Link
+                        className={`transition-all duration-250 ease-in-out ${pathname === "/schulungen" ? "text-[#2177E8]" : "text-white"} hover:text-[#2177E8]`}
+                        href="/schulungen"
+                    >
+                        Schulungen
                     </Link>
 
                     <Link

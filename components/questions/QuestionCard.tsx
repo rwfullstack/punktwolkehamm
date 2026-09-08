@@ -16,7 +16,7 @@ export const QuestionCard = ({ question, answer }: Properties) => {
     const answerRef = useRef<HTMLDivElement>(null)
 
     return (
-        <ViewAnimation type="Rightwards">
+        <ViewAnimation type="Rightwards" className="w-full">
             <li className="flex min-h-20 w-full flex-col rounded-[20px] bg-[#F3F4F6] px-5 md:px-8">
                 <div className="flex h-20 items-center justify-between gap-3">
                     <h4 className="font-medium">{question}</h4>

@@ -1,5 +1,6 @@
 import { CheckCircle } from "lucide-react"
 
+import { ViewAnimation } from "@/components/ViewAnimation"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
 export const Benefits = async () => {
@@ -19,14 +20,15 @@ export const Benefits = async () => {
                 <p className="text-md w-full text-center text-[#4A5565] md:w-2/3">{content?.benefits?.text}</p>
 
                 <ol className="mt-15 grid w-full grid-cols-1 gap-5 md:w-4/5 md:grid-cols-2">
-                    {content?.benefits?.benefits?.map((benefit) => (
-                        <li
-                            className="flex gap-3 rounded-[20px] border border-gray-100 px-5 py-7 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg"
-                            key={benefit?.id}
-                        >
-                            <CheckCircle className="size-6 shrink-0 text-[#2177E8]" />
+                    {content?.benefits?.benefits?.map((benefit, index) => (
+                        <li key={benefit?.id}>
+                            <ViewAnimation type="Rightwards" delay={index * 100} className="h-full w-full">
+                                <div className="flex gap-3 rounded-[20px] border border-gray-100 px-5 py-7 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg">
+                                    <CheckCircle className="size-6 shrink-0 text-[#2177E8]" />
 
-                            <p>{benefit?.text}</p>
+                                    <p>{benefit?.text}</p>
+                                </div>
+                            </ViewAnimation>
                         </li>
                     ))}
                 </ol>

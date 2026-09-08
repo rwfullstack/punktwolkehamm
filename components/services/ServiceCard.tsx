@@ -19,7 +19,7 @@ type Properties = {
 
 export const ServiceCard = ({ name, text, image, alt, icon, href, services }: Properties) => {
     return (
-        <ViewAnimation className="max-md:px-1 max-md:pb-3" type="Rightwards">
+        <ViewAnimation className="h-full w-full max-md:px-1 max-md:pb-3" type="Rightwards">
             <Link href={href} className="block">
                 <div className="group/card relative flex-col overflow-hidden rounded-[20px] shadow-md transition-all duration-250 ease-in-out hover:-translate-y-1 hover:shadow-lg">
                     <div className="absolute top-5 left-6 z-1999 flex size-12 items-center justify-center rounded-xl bg-[#2177E8]/70 text-white">

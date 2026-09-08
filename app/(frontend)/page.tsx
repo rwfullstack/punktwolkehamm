@@ -7,11 +7,8 @@ import { Footer } from "@/components/footer/Footer"
 import { Header } from "@/components/header/Header"
 import { Process } from "@/components/process/Process"
 import { Questions } from "@/components/questions/Questions"
+import { Partners } from "@/components/partners/Partners"
 import { Services } from "@/components/services/Services"
-import Marquee from "react-fast-marquee"
-import Link from "next/link"
-import Image from "next/image"
-import { Move3d, Move3dIcon, Play } from "lucide-react"
 
 export const metadata: Metadata = {
     title: "PunktWolke Hamm - Drohnenservices",
@@ -54,6 +51,7 @@ const Page = async () => {
             <Process />
             {/* <Testimonials /> */}
             <Questions />
+            <Partners />
             {/* <Statistics /> */}
             <Contact />
             <Footer />

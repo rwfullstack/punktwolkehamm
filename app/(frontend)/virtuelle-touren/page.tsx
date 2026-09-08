@@ -1,28 +1,22 @@
 import { Metadata } from "next"
 
-import { About } from "@/components/about/About"
 import { Contact } from "@/components/contact/Contact"
-import { CTA } from "@/components/cta/CTA"
 import { Footer } from "@/components/footer/Footer"
 import { Header } from "@/components/header/Header"
-import { Process } from "@/components/process/Process"
-import { Questions } from "@/components/questions/Questions"
-import { Services } from "@/components/services/Services"
-import Marquee from "react-fast-marquee"
-import Link from "next/link"
-import Image from "next/image"
-import { Move3d, Move3dIcon, Play } from "lucide-react"
-import { List } from "./_components/List"
+import { PageAtmosphere } from "@/components/layout/PageAtmosphere"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
+
+import { List } from "./_components/List"
 
 export const metadata: Metadata = {
     title: "Virtuelle Touren | PunktWolke Hamm",
-    description: "Entdecken Sie die Welt aus unserer Perspektive. Virtuelle Touren mit 360°-Ansichten und 8K-Qualität.",
-    keywords: "PunktWolke Hamm, Virtuelle Touren, 360°-Ansicht, 8K-Qualität",
+    description:
+        "Entdecken Sie Orte und Objekte in immersiven 360°-Touren – interaktiv, detailreich und jederzeit erlebbar.",
+    keywords: "PunktWolke Hamm, Virtuelle Touren, 360°-Ansicht, Drohnen, Immersive Tour",
     openGraph: {
         title: "Virtuelle Touren | PunktWolke Hamm",
         description:
-            "Entdecken Sie die Welt aus unserer Perspektive. Virtuelle Touren mit 360°-Ansichten und 8K-Qualität."
+            "Entdecken Sie Orte und Objekte in immersiven 360°-Touren – interaktiv, detailreich und jederzeit erlebbar."
     }
 }
 
@@ -37,11 +31,13 @@ const Page = async () => {
         <>
             <Header />
 
-            <main className="w-full bg-linear-to-r from-[#053070] to-[#0D083F] py-40 text-white">
-                <div className="mx-auto flex max-w-7xl gap-16 gap-y-8 px-3">
-                    <List data={content} />
-                </div>
-            </main>
+            <PageAtmosphere
+                eyebrow="360° Erlebnisse"
+                title="Virtuelle Touren aus der Luft"
+                subtitle="Immersive Rundgänge, die Räume, Gebäude und Areale erlebbar machen – interaktiv, präzise und jederzeit teilbar."
+            >
+                <List data={content} />
+            </PageAtmosphere>
 
             <Contact />
             <Footer />

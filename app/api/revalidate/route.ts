@@ -20,9 +20,11 @@ export const GET = async (request: NextRequest) => {
     revalidatePath("/inspektion")
     revalidatePath("/kontakt")
     revalidatePath("/landwirtschaft")
+    revalidatePath("/schulungen")
     revalidatePath("/ueber-uns")
     revalidatePath("/vermessung")
     revalidatePath("/virtuelle-touren")
+    revalidatePath("/behoerden")
 
     const infoPagePaths = await getAllInfoPagePaths()
 

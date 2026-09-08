@@ -92,6 +92,25 @@ export const Services = async () => {
                         href={"/virtuelle-touren"}
                         services={landingPage?.services?.service6?.services?.map((service) => service.name ?? "") ?? []}
                     />
+
+                    <ServiceCard
+                        name={landingPage?.services?.service7?.name ?? "Schulungen"}
+                        text={
+                            landingPage?.services?.service7?.text ??
+                            "Praxisnahe Drohnenschulungen und Weiterbildungen für Einsteiger und Profis."
+                        }
+                        image={getResourceUrl((landingPage?.services?.service7?.image as Resource)?.url)}
+                        alt={(landingPage?.services?.service7?.image as Resource)?.alt ?? "Schulungen"}
+                        icon={landingPage?.services?.service7?.icon ?? "GraduationCap"}
+                        href={"/schulungen"}
+                        services={
+                            landingPage?.services?.service7?.services?.map((service) => service.name ?? "") ?? [
+                                "Grundlagen",
+                                "Praxis",
+                                "Zertifizierung"
+                            ]
+                        }
+                    />
                 </div>
             </div>
         </section>

@@ -74,6 +74,7 @@ export const HeaderMobile = () => {
                 <Link href="/foto-film">Foto & Film</Link>
                 <Link href="/landwirtschaft">Landwirtschaft</Link>
                 <Link href="/behoerden">Behörden</Link>
+                <Link href="/schulungen">Schulungen</Link>
                 <Link href="/ueber-uns">Über uns</Link>
                 <Link href="/datenschutz">Datenschutz</Link>
                 <Link href="/agb">AGBs</Link>

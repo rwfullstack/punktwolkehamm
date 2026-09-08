@@ -22,6 +22,7 @@ import { AboutPageGlobal } from "./globals/AboutPage"
 import { ImprintPageGlobal } from "./globals/ImprintPage"
 import { PrivacyPageGlobal } from "./globals/PrivacyPage"
 import { ToursPageGlobal } from "./globals/ToursPage"
+import { TrainingPageGlobal } from "./globals/TrainingPage"
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -46,7 +47,8 @@ export default buildConfig({
         AboutPageGlobal,
         ImprintPageGlobal,
         PrivacyPageGlobal,
-        ToursPageGlobal
+        ToursPageGlobal,
+        TrainingPageGlobal
     ],
 
     collections: [Users, Resources, Messages, InfoPages],

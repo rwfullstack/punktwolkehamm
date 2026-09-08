@@ -2,20 +2,20 @@ import { Metadata } from "next"
 
 import { Footer } from "@/components/footer/Footer"
 import { Header } from "@/components/header/Header"
-import { GetPayload } from "@/payload/utilities/config/GetPayload"
-import { RichText } from "@/components/RichText"
-import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
+import { PageAtmosphere } from "@/components/layout/PageAtmosphere"
+import { TextPagePanel } from "@/components/layout/TextPagePanel"
 import { TextPageContentConverter } from "@/components/converters/TextPageContentConverter"
+import { RichText } from "@/components/RichText"
+import { GetPayload } from "@/payload/utilities/config/GetPayload"
+import { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical"
 
 export const metadata: Metadata = {
     title: "AGBs | PunktWolke Hamm",
-    description: "Hier finden Sie alle wichtigen Informationen zu unseren AGBs auf unserer Website. ",
-    keywords:
-        "PunktWolke Hamm, Drohnenservices, Drohnen, Hamm, Drohnenflüge, Drohnenbeobachtung, Drohnenaufnahme, Drohnenbeobachtung, Drohnenaufnahme, Drohnenbeobachtung, Drohnenaufnahme",
+    description: "Hier finden Sie alle wichtigen Informationen zu unseren AGBs auf unserer Website.",
+    keywords: "PunktWolke Hamm, AGB, Allgemeine Geschäftsbedingungen, Drohnenservices",
     openGraph: {
-        title: "PunktWolke Hamm - Drohnenservices",
-        description:
-            "Professionelle Drohneninspektionen für Infrastruktur, Industrie und Gebäude. Wir prüfen dort, wo Menschen nicht hinkommen sollten - schnell, sicher und kosteneffizient. Mit Thermografie und hochauflösender Bildgebung erkennen wir Probleme, bevor sie zu teuren Schäden werden."
+        title: "AGBs | PunktWolke Hamm",
+        description: "Hier finden Sie alle wichtigen Informationen zu unseren AGBs auf unserer Website."
     }
 }
 
@@ -30,11 +30,15 @@ const Page = async () => {
         <>
             <Header />
 
-            <main className="w-full bg-linear-to-r from-[#053070] to-[#0D083F] py-40 text-white">
-                <div className="mx-auto max-w-7xl flex-col gap-3 px-3">
+            <PageAtmosphere
+                eyebrow="Rechtliches"
+                title="Allgemeine Geschäftsbedingungen"
+                subtitle="Die Rahmenbedingungen für unsere Leistungen – übersichtlich und verbindlich."
+            >
+                <TextPagePanel>
                     <RichText data={content?.content as SerializedEditorState} converter={TextPageContentConverter} />
-                </div>
-            </main>
+                </TextPagePanel>
+            </PageAtmosphere>
 
             <Footer margin={false} />
         </>

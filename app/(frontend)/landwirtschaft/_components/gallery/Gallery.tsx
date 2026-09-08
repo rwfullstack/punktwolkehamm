@@ -1,4 +1,5 @@
 import { ResourceImage } from "@/components/media/ResourceImage"
+import { ViewAnimation } from "@/components/ViewAnimation"
 import { Resource } from "@/payload/payload-types"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
@@ -20,41 +21,44 @@ export const Gallery = async () => {
                 <p className="text-md w-full text-[#4A5565] md:w-2/3">{content?.gallery?.text}</p>
 
                 <div className="mt-15 grid grid-cols-1 gap-5 md:grid-cols-3 md:grid-rows-2">
-                    <div className="relative overflow-hidden rounded-3xl shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg md:col-span-2 md:row-span-2">
-                        <ResourceImage
-                            resource={content?.gallery?.images?.[0]?.image as Resource}
-                            variant="gallery"
-                            className="rounded-3xl object-cover"
-                            width={1920}
-                            height={1080}
-                        />
+                    <div className="md:col-span-2 md:row-span-2">
+                        <ViewAnimation type="Rightwards" delay={0} className="h-full w-full">
+                            <div className="relative h-full overflow-hidden rounded-3xl shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+                                <ResourceImage
+                                    resource={content?.gallery?.images?.[0]?.image as Resource}
+                                    variant="gallery"
+                                    className="h-full w-full object-cover"
+                                    width={1920}
+                                    height={1080}
+                                />
 
-                        {Boolean((content?.gallery?.images?.[0]?.description ?? "").trim()) && (
-                            <div className="absolute top-0 left-0 flex size-full items-end justify-start bg-linear-to-b from-[#053070]/5 via-[#0D083F]/5 to-[#0D083F] px-5 py-1.5">
-                                <p className="text-white">{content?.gallery?.images?.[0]?.description}</p>
+                                {Boolean((content?.gallery?.images?.[0]?.description ?? "").trim()) && (
+                                    <div className="absolute top-0 left-0 flex size-full items-end justify-start bg-linear-to-b from-[#053070]/5 via-[#0D083F]/5 to-[#0D083F] px-5 py-1.5">
+                                        <p className="text-white">{content?.gallery?.images?.[0]?.description}</p>
+                                    </div>
+                                )}
                             </div>
-                        )}
+                        </ViewAnimation>
                     </div>
 
-                    {content?.gallery?.images?.slice(1).map((image) => (
-                        <div
-                            key={image?.id}
-                            className="relative overflow-hidden rounded-3xl shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg"
-                        >
-                            <ResourceImage
-                                resource={image?.image as Resource}
-                                variant="gallery"
-                                className="rounded-3xl object-cover"
-                                width={1920}
-                                height={1080}
-                            />
+                    {content?.gallery?.images?.slice(1)?.map((image, index) => (
+                        <ViewAnimation key={image?.id} type="Leftwards" delay={(index + 1) * 100} className="h-full w-full">
+                            <div className="relative overflow-hidden rounded-3xl shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:shadow-lg">
+                                <ResourceImage
+                                    resource={image?.image as Resource}
+                                    variant="gallery"
+                                    className="h-full w-full object-cover"
+                                    width={1920}
+                                    height={1080}
+                                />
 
-                            {Boolean((image?.description ?? "").trim()) && (
-                                <div className="absolute top-0 left-0 flex size-full items-end justify-start bg-linear-to-b from-[#053070]/0 via-[#0D083F]/0 to-[#0D083F] px-5 py-1.5">
-                                    <p className="text-white">{image?.description}</p>
-                                </div>
-                            )}
-                        </div>
+                                {Boolean((image?.description ?? "").trim()) && (
+                                    <div className="absolute top-0 left-0 flex size-full items-end justify-start bg-linear-to-b from-[#053070]/0 via-[#0D083F]/0 to-[#0D083F] px-5 py-1.5">
+                                        <p className="text-white">{image?.description}</p>
+                                    </div>
+                                )}
+                            </div>
+                        </ViewAnimation>
                     ))}
                 </div>
             </div>

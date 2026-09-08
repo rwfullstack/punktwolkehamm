@@ -17,8 +17,8 @@ export const Details = async () => {
                 <h3 className="text-center text-3xl md:w-2/3 md:text-4xl">{content?.details?.subtitle}</h3>
 
                 <ol className="mt-10 grid w-full gap-5 md:grid-cols-2">
-                    {content?.details?.details?.map((detail) => (
-                        <DetailItemCard key={detail?.id} detail={detail as DetailItem} />
+                    {content?.details?.details?.map((detail, index) => (
+                        <DetailItemCard key={detail?.id} detail={detail as DetailItem} delay={index * 100} />
                     ))}
                 </ol>
             </div>

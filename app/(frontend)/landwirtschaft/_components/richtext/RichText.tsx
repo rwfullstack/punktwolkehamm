@@ -1,3 +1,4 @@
+import { ViewAnimation } from "@/components/ViewAnimation"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
 export const RichText = async () => {
@@ -21,16 +22,17 @@ export const RichText = async () => {
                 ))}
 
                 <ol className="mt-10 grid w-full gap-x-10 gap-y-5 md:grid-cols-3">
-                    {content?.richtext?.blocks?.map((block) => (
-                        <li
-                            className="flex flex-col items-center gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg"
-                            key={block?.id}
-                        >
-                            <p className="text-4xl font-semibold text-[#2177E8]">{block?.value}</p>
+                    {content?.richtext?.blocks?.map((block, index) => (
+                        <li key={block?.id}>
+                            <ViewAnimation type="Rightwards" delay={index * 100} className="h-full w-full">
+                                <div className="flex flex-col items-center gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg">
+                                    <p className="text-4xl font-semibold text-[#2177E8]">{block?.value}</p>
 
-                            <h4 className="text-center text-xl font-semibold">{block?.title}</h4>
+                                    <h4 className="text-center text-xl font-semibold">{block?.title}</h4>
 
-                            <p className="text-md text-center text-[#4A5565]">{block?.text}</p>
+                                    <p className="text-md text-center text-[#4A5565]">{block?.text}</p>
+                                </div>
+                            </ViewAnimation>
                         </li>
                     ))}
                 </ol>

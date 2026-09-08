@@ -12,7 +12,7 @@ export const RichText = async () => {
             <div className="mx-auto flex max-w-7xl flex-col items-center gap-5 px-3 text-center">
                 <h2 className="font-semibold text-[#2177E8] uppercase">{content?.richtext?.title}</h2>
 
-                <h3 className="text-3xl md:w-2/3 md:text-4xl">{content?.richtext?.subtitle}</h3>
+                <h3 className="text-center text-3xl md:w-2/3 md:text-4xl">{content?.richtext?.subtitle}</h3>
 
                 {content?.richtext?.texts?.map((text) => (
                     <p className="text-md w-full text-[#4A5565] md:w-2/3" key={text?.id}>

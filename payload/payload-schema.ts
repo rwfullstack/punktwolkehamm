@@ -40,6 +40,11 @@ export const enum_landing_page_testimonials_testimonial3_stars = pgEnum(
     "enum_landing_page_testimonials_testimonial3_stars",
     ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
 )
+export const enum_about_page_blocks_layout = pgEnum("enum_about_page_blocks_layout", [
+    "textOnly",
+    "imageLeft",
+    "imageRight"
+])
 
 export const users_sessions = pgTable(
     "users_sessions",
@@ -415,6 +420,25 @@ export const landing_page_services_service6_services = pgTable(
     ]
 )
 
+export const landing_page_services_service7_services = pgTable(
+    "landing_page_services_service7_services",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        name: varchar("name")
+    },
+    (columns) => [
+        index("landing_page_services_service7_services_order_idx").on(columns._order),
+        index("landing_page_services_service7_services_parent_id_idx").on(columns._parentID),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [landing_page.id],
+            name: "landing_page_services_service7_services_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
 export const landing_page_about_benefits = pgTable(
     "landing_page_about_benefits",
     {
@@ -542,6 +566,12 @@ export const landing_page = pgTable(
         services_service6_name: varchar("services_service6_name"),
         services_service6_text: varchar("services_service6_text"),
         services_service6_icon: varchar("services_service6_icon"),
+        services_service7_image: uuid("services_service7_image_id").references(() => resources.id, {
+            onDelete: "set null"
+        }),
+        services_service7_name: varchar("services_service7_name"),
+        services_service7_text: varchar("services_service7_text"),
+        services_service7_icon: varchar("services_service7_icon"),
         about_title: varchar("about_title"),
         about_subtitle: varchar("about_subtitle"),
         about_text: varchar("about_text"),
@@ -606,6 +636,7 @@ export const landing_page = pgTable(
         index("landing_page_services_service4_services_service4_image_idx").on(columns.services_service4_image),
         index("landing_page_services_service5_services_service5_image_idx").on(columns.services_service5_image),
         index("landing_page_services_service6_services_service6_image_idx").on(columns.services_service6_image),
+        index("landing_page_services_service7_services_service7_image_idx").on(columns.services_service7_image),
         index("landing_page_process_process_preview_image_idx").on(columns.process_previewImage)
     ]
 )
@@ -660,11 +691,18 @@ export const measurement_page_details_details = pgTable(
         id: varchar("id").primaryKey(),
         icon: varchar("icon"),
         title: varchar("title"),
-        text: varchar("text")
+        text: varchar("text"),
+        linkAvailable: boolean("link_available"),
+        linkText: varchar("link_text"),
+        linkIcon: varchar("link_icon"),
+        infoPage: uuid("info_page_id").references(() => info_pages.id, {
+            onDelete: "set null"
+        })
     },
     (columns) => [
         index("measurement_page_details_details_order_idx").on(columns._order),
         index("measurement_page_details_details_parent_id_idx").on(columns._parentID),
+        index("measurement_page_details_details_info_page_idx").on(columns.infoPage),
         foreignKey({
             columns: [columns["_parentID"]],
             foreignColumns: [measurement_page.id],
@@ -865,11 +903,18 @@ export const inspection_page_details_details = pgTable(
         id: varchar("id").primaryKey(),
         icon: varchar("icon"),
         title: varchar("title"),
-        text: varchar("text")
+        text: varchar("text"),
+        linkAvailable: boolean("link_available"),
+        linkText: varchar("link_text"),
+        linkIcon: varchar("link_icon"),
+        infoPage: uuid("info_page_id").references(() => info_pages.id, {
+            onDelete: "set null"
+        })
     },
     (columns) => [
         index("inspection_page_details_details_order_idx").on(columns._order),
         index("inspection_page_details_details_parent_id_idx").on(columns._parentID),
+        index("inspection_page_details_details_info_page_idx").on(columns.infoPage),
         foreignKey({
             columns: [columns["_parentID"]],
             foreignColumns: [inspection_page.id],
@@ -1030,12 +1075,16 @@ export const image_page_details_details = pgTable(
         title: varchar("title"),
         text: varchar("text"),
         linkAvailable: boolean("link_available"),
-        link: varchar("link"),
-        linkText: varchar("link_text")
+        linkText: varchar("link_text"),
+        linkIcon: varchar("link_icon"),
+        infoPage: uuid("info_page_id").references(() => info_pages.id, {
+            onDelete: "set null"
+        })
     },
     (columns) => [
         index("image_page_details_details_order_idx").on(columns._order),
         index("image_page_details_details_parent_id_idx").on(columns._parentID),
+        index("image_page_details_details_info_page_idx").on(columns.infoPage),
         foreignKey({
             columns: [columns["_parentID"]],
             foreignColumns: [image_page.id],
@@ -1243,11 +1292,18 @@ export const agriculture_page_details_details = pgTable(
         id: varchar("id").primaryKey(),
         icon: varchar("icon"),
         title: varchar("title"),
-        text: varchar("text")
+        text: varchar("text"),
+        linkAvailable: boolean("link_available"),
+        linkText: varchar("link_text"),
+        linkIcon: varchar("link_icon"),
+        infoPage: uuid("info_page_id").references(() => info_pages.id, {
+            onDelete: "set null"
+        })
     },
     (columns) => [
         index("agriculture_page_details_details_order_idx").on(columns._order),
         index("agriculture_page_details_details_parent_id_idx").on(columns._parentID),
+        index("agriculture_page_details_details_info_page_idx").on(columns.infoPage),
         foreignKey({
             columns: [columns["_parentID"]],
             foreignColumns: [agriculture_page.id],
@@ -1418,11 +1474,18 @@ export const office_page_details_details = pgTable(
         id: varchar("id").primaryKey(),
         icon: varchar("icon"),
         title: varchar("title"),
-        text: varchar("text")
+        text: varchar("text"),
+        linkAvailable: boolean("link_available"),
+        linkText: varchar("link_text"),
+        linkIcon: varchar("link_icon"),
+        infoPage: uuid("info_page_id").references(() => info_pages.id, {
+            onDelete: "set null"
+        })
     },
     (columns) => [
         index("office_page_details_details_order_idx").on(columns._order),
         index("office_page_details_details_parent_id_idx").on(columns._parentID),
+        index("office_page_details_details_info_page_idx").on(columns.infoPage),
         foreignKey({
             columns: [columns["_parentID"]],
             foreignColumns: [office_page.id],
@@ -1559,9 +1622,34 @@ export const conditions_page = pgTable("conditions_page", {
     createdAt: timestamp("created_at", { mode: "string", withTimezone: true, precision: 3 })
 })
 
+export const about_page_blocks = pgTable(
+    "about_page_blocks",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        layout: enum_about_page_blocks_layout("layout").default("textOnly"),
+        content: jsonb("content"),
+        image: uuid("image_id").references(() => resources.id, {
+            onDelete: "set null"
+        })
+    },
+    (columns) => [
+        index("about_page_blocks_order_idx").on(columns._order),
+        index("about_page_blocks_parent_id_idx").on(columns._parentID),
+        index("about_page_blocks_image_idx").on(columns.image),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [about_page.id],
+            name: "about_page_blocks_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
 export const about_page = pgTable("about_page", {
     id: uuid("id").defaultRandom().primaryKey(),
-    content: jsonb("content"),
+    title: varchar("title"),
+    description: varchar("description"),
     updatedAt: timestamp("updated_at", { mode: "string", withTimezone: true, precision: 3 }),
     createdAt: timestamp("created_at", { mode: "string", withTimezone: true, precision: 3 })
 })
@@ -1608,6 +1696,207 @@ export const tours_page = pgTable("tours_page", {
     updatedAt: timestamp("updated_at", { mode: "string", withTimezone: true, precision: 3 }),
     createdAt: timestamp("created_at", { mode: "string", withTimezone: true, precision: 3 })
 })
+
+export const training_page_information_texts = pgTable(
+    "training_page_information_texts",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        text: varchar("text")
+    },
+    (columns) => [
+        index("training_page_information_texts_order_idx").on(columns._order),
+        index("training_page_information_texts_parent_id_idx").on(columns._parentID),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [training_page.id],
+            name: "training_page_information_texts_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
+export const training_page_information_details = pgTable(
+    "training_page_information_details",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        detail: varchar("detail")
+    },
+    (columns) => [
+        index("training_page_information_details_order_idx").on(columns._order),
+        index("training_page_information_details_parent_id_idx").on(columns._parentID),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [training_page.id],
+            name: "training_page_information_details_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
+export const training_page_gallery_images = pgTable(
+    "training_page_gallery_images",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        image: uuid("image_id").references(() => resources.id, {
+            onDelete: "set null"
+        }),
+        description: varchar("description")
+    },
+    (columns) => [
+        index("training_page_gallery_images_order_idx").on(columns._order),
+        index("training_page_gallery_images_parent_id_idx").on(columns._parentID),
+        index("training_page_gallery_images_image_idx").on(columns.image),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [training_page.id],
+            name: "training_page_gallery_images_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
+export const training_page_details_details = pgTable(
+    "training_page_details_details",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        icon: varchar("icon"),
+        title: varchar("title"),
+        text: varchar("text"),
+        linkAvailable: boolean("link_available"),
+        linkText: varchar("link_text"),
+        linkIcon: varchar("link_icon"),
+        infoPage: uuid("info_page_id").references(() => info_pages.id, {
+            onDelete: "set null"
+        })
+    },
+    (columns) => [
+        index("training_page_details_details_order_idx").on(columns._order),
+        index("training_page_details_details_parent_id_idx").on(columns._parentID),
+        index("training_page_details_details_info_page_idx").on(columns.infoPage),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [training_page.id],
+            name: "training_page_details_details_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
+export const training_page_richtext_texts = pgTable(
+    "training_page_richtext_texts",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        text: varchar("text")
+    },
+    (columns) => [
+        index("training_page_richtext_texts_order_idx").on(columns._order),
+        index("training_page_richtext_texts_parent_id_idx").on(columns._parentID),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [training_page.id],
+            name: "training_page_richtext_texts_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
+export const training_page_richtext_blocks = pgTable(
+    "training_page_richtext_blocks",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        value: varchar("value"),
+        title: varchar("title"),
+        text: varchar("text")
+    },
+    (columns) => [
+        index("training_page_richtext_blocks_order_idx").on(columns._order),
+        index("training_page_richtext_blocks_parent_id_idx").on(columns._parentID),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [training_page.id],
+            name: "training_page_richtext_blocks_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
+export const training_page_benefits_benefits = pgTable(
+    "training_page_benefits_benefits",
+    {
+        _order: integer("_order").notNull(),
+        _parentID: uuid("_parent_id").notNull(),
+        id: varchar("id").primaryKey(),
+        text: varchar("text")
+    },
+    (columns) => [
+        index("training_page_benefits_benefits_order_idx").on(columns._order),
+        index("training_page_benefits_benefits_parent_id_idx").on(columns._parentID),
+        foreignKey({
+            columns: [columns["_parentID"]],
+            foreignColumns: [training_page.id],
+            name: "training_page_benefits_benefits_parent_id_fk"
+        }).onDelete("cascade")
+    ]
+)
+
+export const training_page = pgTable(
+    "training_page",
+    {
+        id: uuid("id").defaultRandom().primaryKey(),
+        cta_image: uuid("cta_image_id").references(() => resources.id, {
+            onDelete: "set null"
+        }),
+        cta_imageMobile: uuid("cta_image_mobile_id").references(() => resources.id, {
+            onDelete: "set null"
+        }),
+        cta_name: varchar("cta_name"),
+        cta_title: varchar("cta_title"),
+        cta_subtitle: varchar("cta_subtitle"),
+        cta_appointmentButton_text: varchar("cta_appointment_button_text"),
+        cta_appointmentButton_icon: varchar("cta_appointment_button_icon"),
+        information_title: varchar("information_title"),
+        information_subtitle: varchar("information_subtitle"),
+        information_block_icon: varchar("information_block_icon"),
+        information_block_title: varchar("information_block_title"),
+        information_block_subtitle: varchar("information_block_subtitle"),
+        information_block_statistic1_name: varchar("information_block_statistic1_name"),
+        information_block_statistic1_value: varchar("information_block_statistic1_value"),
+        information_block_statistic2_name: varchar("information_block_statistic2_name"),
+        information_block_statistic2_value: varchar("information_block_statistic2_value"),
+        information_block_statistic3_name: varchar("information_block_statistic3_name"),
+        information_block_statistic3_value: varchar("information_block_statistic3_value"),
+        information_block_statistic4_name: varchar("information_block_statistic4_name"),
+        information_block_statistic4_value: varchar("information_block_statistic4_value"),
+        gallery_title: varchar("gallery_title"),
+        gallery_subtitle: varchar("gallery_subtitle"),
+        gallery_text: varchar("gallery_text"),
+        details_title: varchar("details_title"),
+        details_subtitle: varchar("details_subtitle"),
+        richtext_title: varchar("richtext_title"),
+        richtext_subtitle: varchar("richtext_subtitle"),
+        benefits_title: varchar("benefits_title"),
+        benefits_subtitle: varchar("benefits_subtitle"),
+        benefits_text: varchar("benefits_text"),
+        contact_title: varchar("contact_title"),
+        contact_subtitle: varchar("contact_subtitle"),
+        contact_appointmentButton_text: varchar("contact_appointment_button_text"),
+        contact_appointmentButton_icon: varchar("contact_appointment_button_icon"),
+        contact_phone: varchar("contact_phone"),
+        contact_mail: varchar("contact_mail"),
+        updatedAt: timestamp("updated_at", { mode: "string", withTimezone: true, precision: 3 }),
+        createdAt: timestamp("created_at", { mode: "string", withTimezone: true, precision: 3 })
+    },
+    (columns) => [
+        index("training_page_cta_cta_image_idx").on(columns.cta_image),
+        index("training_page_cta_cta_image_mobile_idx").on(columns.cta_imageMobile)
+    ]
+)
 
 export const relations_users_sessions = relations(users_sessions, ({ one }) => ({
     _parentID: one(users, {
@@ -1751,6 +2040,16 @@ export const relations_landing_page_services_service6_services = relations(
         })
     })
 )
+export const relations_landing_page_services_service7_services = relations(
+    landing_page_services_service7_services,
+    ({ one }) => ({
+        _parentID: one(landing_page, {
+            fields: [landing_page_services_service7_services._parentID],
+            references: [landing_page.id],
+            relationName: "services_service7_services"
+        })
+    })
+)
 export const relations_landing_page_about_benefits = relations(landing_page_about_benefits, ({ one }) => ({
     _parentID: one(landing_page, {
         fields: [landing_page_about_benefits._parentID],
@@ -1831,6 +2130,14 @@ export const relations_landing_page = relations(landing_page, ({ one, many }) =>
     services_service6_services: many(landing_page_services_service6_services, {
         relationName: "services_service6_services"
     }),
+    services_service7_image: one(resources, {
+        fields: [landing_page.services_service7_image],
+        references: [resources.id],
+        relationName: "services_service7_image"
+    }),
+    services_service7_services: many(landing_page_services_service7_services, {
+        relationName: "services_service7_services"
+    }),
     about_benefits: many(landing_page_about_benefits, {
         relationName: "about_benefits"
     }),
@@ -1870,6 +2177,11 @@ export const relations_measurement_page_details_details = relations(measurement_
         fields: [measurement_page_details_details._parentID],
         references: [measurement_page.id],
         relationName: "details_details"
+    }),
+    infoPage: one(info_pages, {
+        fields: [measurement_page_details_details.infoPage],
+        references: [info_pages.id],
+        relationName: "infoPage"
     })
 }))
 export const relations_measurement_page_information_texts = relations(
@@ -1979,6 +2291,11 @@ export const relations_inspection_page_details_details = relations(inspection_pa
         fields: [inspection_page_details_details._parentID],
         references: [inspection_page.id],
         relationName: "details_details"
+    }),
+    infoPage: one(info_pages, {
+        fields: [inspection_page_details_details.infoPage],
+        references: [info_pages.id],
+        relationName: "infoPage"
     })
 }))
 export const relations_inspection_page_usages_usages_list = relations(
@@ -2062,6 +2379,11 @@ export const relations_image_page_details_details = relations(image_page_details
         fields: [image_page_details_details._parentID],
         references: [image_page.id],
         relationName: "details_details"
+    }),
+    infoPage: one(info_pages, {
+        fields: [image_page_details_details.infoPage],
+        references: [info_pages.id],
+        relationName: "infoPage"
     })
 }))
 export const relations_image_page_equipment_blocks = relations(image_page_equipment_blocks, ({ one }) => ({
@@ -2167,6 +2489,11 @@ export const relations_agriculture_page_details_details = relations(agriculture_
         fields: [agriculture_page_details_details._parentID],
         references: [agriculture_page.id],
         relationName: "details_details"
+    }),
+    infoPage: one(info_pages, {
+        fields: [agriculture_page_details_details.infoPage],
+        references: [info_pages.id],
+        relationName: "infoPage"
     })
 }))
 export const relations_agriculture_page_richtext_texts = relations(agriculture_page_richtext_texts, ({ one }) => ({
@@ -2250,6 +2577,11 @@ export const relations_office_page_details_details = relations(office_page_detai
         fields: [office_page_details_details._parentID],
         references: [office_page.id],
         relationName: "details_details"
+    }),
+    infoPage: one(info_pages, {
+        fields: [office_page_details_details.infoPage],
+        references: [info_pages.id],
+        relationName: "infoPage"
     })
 }))
 export const relations_office_page_information_texts = relations(office_page_information_texts, ({ one }) => ({
@@ -2317,7 +2649,23 @@ export const relations_office_page = relations(office_page, ({ one, many }) => (
     })
 }))
 export const relations_conditions_page = relations(conditions_page, () => ({}))
-export const relations_about_page = relations(about_page, () => ({}))
+export const relations_about_page_blocks = relations(about_page_blocks, ({ one }) => ({
+    _parentID: one(about_page, {
+        fields: [about_page_blocks._parentID],
+        references: [about_page.id],
+        relationName: "blocks"
+    }),
+    image: one(resources, {
+        fields: [about_page_blocks.image],
+        references: [resources.id],
+        relationName: "image"
+    })
+}))
+export const relations_about_page = relations(about_page, ({ many }) => ({
+    blocks: many(about_page_blocks, {
+        relationName: "blocks"
+    })
+}))
 export const relations_imprint_page = relations(imprint_page, () => ({}))
 export const relations_privacy_page = relations(privacy_page, () => ({}))
 export const relations_tours_page_tours_tours = relations(tours_page_tours_tours, ({ one }) => ({
@@ -2332,12 +2680,105 @@ export const relations_tours_page = relations(tours_page, ({ many }) => ({
         relationName: "tours_tours"
     })
 }))
+export const relations_training_page_information_texts = relations(training_page_information_texts, ({ one }) => ({
+    _parentID: one(training_page, {
+        fields: [training_page_information_texts._parentID],
+        references: [training_page.id],
+        relationName: "information_texts"
+    })
+}))
+export const relations_training_page_information_details = relations(training_page_information_details, ({ one }) => ({
+    _parentID: one(training_page, {
+        fields: [training_page_information_details._parentID],
+        references: [training_page.id],
+        relationName: "information_details"
+    })
+}))
+export const relations_training_page_gallery_images = relations(training_page_gallery_images, ({ one }) => ({
+    _parentID: one(training_page, {
+        fields: [training_page_gallery_images._parentID],
+        references: [training_page.id],
+        relationName: "gallery_images"
+    }),
+    image: one(resources, {
+        fields: [training_page_gallery_images.image],
+        references: [resources.id],
+        relationName: "image"
+    })
+}))
+export const relations_training_page_details_details = relations(training_page_details_details, ({ one }) => ({
+    _parentID: one(training_page, {
+        fields: [training_page_details_details._parentID],
+        references: [training_page.id],
+        relationName: "details_details"
+    }),
+    infoPage: one(info_pages, {
+        fields: [training_page_details_details.infoPage],
+        references: [info_pages.id],
+        relationName: "infoPage"
+    })
+}))
+export const relations_training_page_richtext_texts = relations(training_page_richtext_texts, ({ one }) => ({
+    _parentID: one(training_page, {
+        fields: [training_page_richtext_texts._parentID],
+        references: [training_page.id],
+        relationName: "richtext_texts"
+    })
+}))
+export const relations_training_page_richtext_blocks = relations(training_page_richtext_blocks, ({ one }) => ({
+    _parentID: one(training_page, {
+        fields: [training_page_richtext_blocks._parentID],
+        references: [training_page.id],
+        relationName: "richtext_blocks"
+    })
+}))
+export const relations_training_page_benefits_benefits = relations(training_page_benefits_benefits, ({ one }) => ({
+    _parentID: one(training_page, {
+        fields: [training_page_benefits_benefits._parentID],
+        references: [training_page.id],
+        relationName: "benefits_benefits"
+    })
+}))
+export const relations_training_page = relations(training_page, ({ one, many }) => ({
+    cta_image: one(resources, {
+        fields: [training_page.cta_image],
+        references: [resources.id],
+        relationName: "cta_image"
+    }),
+    cta_imageMobile: one(resources, {
+        fields: [training_page.cta_imageMobile],
+        references: [resources.id],
+        relationName: "cta_imageMobile"
+    }),
+    information_texts: many(training_page_information_texts, {
+        relationName: "information_texts"
+    }),
+    information_details: many(training_page_information_details, {
+        relationName: "information_details"
+    }),
+    gallery_images: many(training_page_gallery_images, {
+        relationName: "gallery_images"
+    }),
+    details_details: many(training_page_details_details, {
+        relationName: "details_details"
+    }),
+    richtext_texts: many(training_page_richtext_texts, {
+        relationName: "richtext_texts"
+    }),
+    richtext_blocks: many(training_page_richtext_blocks, {
+        relationName: "richtext_blocks"
+    }),
+    benefits_benefits: many(training_page_benefits_benefits, {
+        relationName: "benefits_benefits"
+    })
+}))
 
 type DatabaseSchema = {
     enum_info_pages_blocks_layout: typeof enum_info_pages_blocks_layout
     enum_landing_page_testimonials_testimonial1_stars: typeof enum_landing_page_testimonials_testimonial1_stars
     enum_landing_page_testimonials_testimonial2_stars: typeof enum_landing_page_testimonials_testimonial2_stars
     enum_landing_page_testimonials_testimonial3_stars: typeof enum_landing_page_testimonials_testimonial3_stars
+    enum_about_page_blocks_layout: typeof enum_about_page_blocks_layout
     users_sessions: typeof users_sessions
     users: typeof users
     resources: typeof resources
@@ -2356,6 +2797,7 @@ type DatabaseSchema = {
     landing_page_services_service4_services: typeof landing_page_services_service4_services
     landing_page_services_service5_services: typeof landing_page_services_service5_services
     landing_page_services_service6_services: typeof landing_page_services_service6_services
+    landing_page_services_service7_services: typeof landing_page_services_service7_services
     landing_page_about_benefits: typeof landing_page_about_benefits
     landing_page_about_data: typeof landing_page_about_data
     landing_page_faq_faqs: typeof landing_page_faq_faqs
@@ -2401,11 +2843,20 @@ type DatabaseSchema = {
     office_page_benefits_benefits: typeof office_page_benefits_benefits
     office_page: typeof office_page
     conditions_page: typeof conditions_page
+    about_page_blocks: typeof about_page_blocks
     about_page: typeof about_page
     imprint_page: typeof imprint_page
     privacy_page: typeof privacy_page
     tours_page_tours_tours: typeof tours_page_tours_tours
     tours_page: typeof tours_page
+    training_page_information_texts: typeof training_page_information_texts
+    training_page_information_details: typeof training_page_information_details
+    training_page_gallery_images: typeof training_page_gallery_images
+    training_page_details_details: typeof training_page_details_details
+    training_page_richtext_texts: typeof training_page_richtext_texts
+    training_page_richtext_blocks: typeof training_page_richtext_blocks
+    training_page_benefits_benefits: typeof training_page_benefits_benefits
+    training_page: typeof training_page
     relations_users_sessions: typeof relations_users_sessions
     relations_users: typeof relations_users
     relations_resources: typeof relations_resources
@@ -2424,6 +2875,7 @@ type DatabaseSchema = {
     relations_landing_page_services_service4_services: typeof relations_landing_page_services_service4_services
     relations_landing_page_services_service5_services: typeof relations_landing_page_services_service5_services
     relations_landing_page_services_service6_services: typeof relations_landing_page_services_service6_services
+    relations_landing_page_services_service7_services: typeof relations_landing_page_services_service7_services
     relations_landing_page_about_benefits: typeof relations_landing_page_about_benefits
     relations_landing_page_about_data: typeof relations_landing_page_about_data
     relations_landing_page_faq_faqs: typeof relations_landing_page_faq_faqs
@@ -2469,11 +2921,20 @@ type DatabaseSchema = {
     relations_office_page_benefits_benefits: typeof relations_office_page_benefits_benefits
     relations_office_page: typeof relations_office_page
     relations_conditions_page: typeof relations_conditions_page
+    relations_about_page_blocks: typeof relations_about_page_blocks
     relations_about_page: typeof relations_about_page
     relations_imprint_page: typeof relations_imprint_page
     relations_privacy_page: typeof relations_privacy_page
     relations_tours_page_tours_tours: typeof relations_tours_page_tours_tours
     relations_tours_page: typeof relations_tours_page
+    relations_training_page_information_texts: typeof relations_training_page_information_texts
+    relations_training_page_information_details: typeof relations_training_page_information_details
+    relations_training_page_gallery_images: typeof relations_training_page_gallery_images
+    relations_training_page_details_details: typeof relations_training_page_details_details
+    relations_training_page_richtext_texts: typeof relations_training_page_richtext_texts
+    relations_training_page_richtext_blocks: typeof relations_training_page_richtext_blocks
+    relations_training_page_benefits_benefits: typeof relations_training_page_benefits_benefits
+    relations_training_page: typeof relations_training_page
 }
 
 declare module "@payloadcms/db-postgres" {

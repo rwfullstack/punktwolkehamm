@@ -1,6 +1,7 @@
 import { CheckCircle } from "lucide-react"
 
 import { DynamicIcon } from "@/components/DynamicIcon"
+import { ViewAnimation } from "@/components/ViewAnimation"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
 export const Statistics = async () => {
@@ -21,11 +22,15 @@ export const Statistics = async () => {
                     <p className="text-md text-[#4A5565]">{content?.usages?.text}</p>
 
                     <ol className="mt-3 flex flex-col gap-4">
-                        {content?.usages?.benefits?.map((benefit) => (
-                            <li className="flex items-center gap-3" key={benefit?.id}>
-                                <CheckCircle className="size-6 shrink-0 text-[#2177E8]" />
+                        {content?.usages?.benefits?.map((benefit, index) => (
+                            <li key={benefit?.id}>
+                                <ViewAnimation type="Rightwards" delay={index * 80} className="h-full w-full">
+                                    <div className="flex items-center gap-3">
+                                        <CheckCircle className="size-6 shrink-0 text-[#2177E8]" />
 
-                                <p className="text-md">{benefit?.benefit}</p>
+                                        <p className="text-md">{benefit?.benefit}</p>
+                                    </div>
+                                </ViewAnimation>
                             </li>
                         ))}
                     </ol>
@@ -33,20 +38,21 @@ export const Statistics = async () => {
 
                 <div className="flex flex-2 flex-col gap-5 self-start">
                     <ol className="grid gap-5">
-                        {content?.usages?.blocks?.map((block) => (
-                            <li
-                                className="flex flex-col gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg"
-                                key={block?.id}
-                            >
-                                <DynamicIcon
-                                    icon={block?.icon as string}
-                                    className="size-14 rounded-xl bg-[#2177E8]/10 p-4 text-[#2177E8]"
-                                    strokeWidth={2.5}
-                                />
+                        {content?.usages?.blocks?.map((block, index) => (
+                            <li key={block?.id}>
+                                <ViewAnimation type="Leftwards" delay={index * 100} className="h-full w-full">
+                                    <div className="flex flex-col gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg">
+                                        <DynamicIcon
+                                            icon={block?.icon as string}
+                                            className="size-14 rounded-xl bg-[#2177E8]/10 p-4 text-[#2177E8]"
+                                            strokeWidth={2.5}
+                                        />
 
-                                <h3 className="text-xl font-semibold">{block?.title}</h3>
+                                        <h3 className="text-xl font-semibold">{block?.title}</h3>
 
-                                <p className="text-md text-[#4A5565]">{block?.text}</p>
+                                        <p className="text-md text-[#4A5565]">{block?.text}</p>
+                                    </div>
+                                </ViewAnimation>
                             </li>
                         ))}
                     </ol>

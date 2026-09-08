@@ -1,6 +1,7 @@
 import { CheckCircle } from "lucide-react"
 
 import { DynamicIcon } from "@/components/DynamicIcon"
+import { ViewAnimation } from "@/components/ViewAnimation"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
 export const Statistics = async () => {
@@ -19,17 +20,21 @@ export const Statistics = async () => {
                     <h3 className="text-3xl md:text-4xl">{content?.information?.subtitle}</h3>
 
                     {content?.information?.texts?.map((text) => (
-                        <p className="text-md text-[#4A5565]" key={text?.id}>
+                        <p key={text?.id} className="text-md text-[#4A5565]">
                             {text?.text}
                         </p>
                     ))}
 
                     <ol className="mt-5 flex flex-col gap-3">
-                        {content?.information?.details?.map((detail) => (
-                            <li className="flex items-center gap-4" key={detail?.id}>
-                                <CheckCircle className="size-6 shrink-0 self-start text-[#2177E8]" />
+                        {content?.information?.details?.map((detail, index) => (
+                            <li key={detail?.id}>
+                                <ViewAnimation type="Rightwards" delay={index * 80} className="h-full w-full">
+                                    <div className="flex items-center gap-4">
+                                        <CheckCircle className="size-6 shrink-0 self-start text-[#2177E8]" />
 
-                                <p className="text-md">{detail?.name}</p>
+                                        <p className="text-md">{detail?.name}</p>
+                                    </div>
+                                </ViewAnimation>
                             </li>
                         ))}
                     </ol>
@@ -37,26 +42,34 @@ export const Statistics = async () => {
 
                 <div className="flex flex-2 flex-col gap-5 self-start">
                     <ol className="grid gap-5">
-                        <li className="flex flex-col gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg">
-                            <DynamicIcon
-                                icon={content?.information?.block?.icon as string}
-                                className="size-14 rounded-xl bg-[#2177E8]/10 p-4 text-[#2177E8]"
-                                strokeWidth={2.5}
-                            />
+                        <li>
+                            <ViewAnimation type="Leftwards" delay={100} className="h-full w-full">
+                                <div className="flex flex-col gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg">
+                                    <DynamicIcon
+                                        icon={content?.information?.block?.icon as string}
+                                        className="size-14 rounded-xl bg-[#2177E8]/10 p-4 text-[#2177E8]"
+                                        strokeWidth={2.5}
+                                    />
 
-                            <h3 className="text-xl font-semibold">{content?.information?.block?.title}</h3>
+                                    <h3 className="text-xl font-semibold">{content?.information?.block?.title}</h3>
 
-                            <p className="text-md text-[#4A5565]">{content?.information?.block?.subtitle}</p>
+                                    <p className="text-md text-[#4A5565]">{content?.information?.block?.subtitle}</p>
 
-                            <ol className="mt-5 flex flex-col gap-5">
-                                {content?.information?.block?.list?.map((list) => (
-                                    <li className="flex gap-2.5" key={list?.id}>
-                                        <CheckCircle className="size-5 shrink-0 self-start text-[#2177E8]" />
+                                    <ol className="mt-5 flex flex-col gap-5">
+                                        {content?.information?.block?.list?.map((list, index) => (
+                                            <li key={list?.id}>
+                                                <ViewAnimation type="Rightwards" delay={index * 80} className="h-full w-full">
+                                                    <div className="flex gap-2.5">
+                                                        <CheckCircle className="size-5 shrink-0 self-start text-[#2177E8]" />
 
-                                        <p className="text-md">{list?.text}</p>
-                                    </li>
-                                ))}
-                            </ol>
+                                                        <p className="text-md">{list?.text}</p>
+                                                    </div>
+                                                </ViewAnimation>
+                                            </li>
+                                        ))}
+                                    </ol>
+                                </div>
+                            </ViewAnimation>
                         </li>
                     </ol>
                 </div>

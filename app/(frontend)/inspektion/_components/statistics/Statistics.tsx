@@ -1,4 +1,5 @@
 import { DynamicIcon } from "@/components/DynamicIcon"
+import { ViewAnimation } from "@/components/ViewAnimation"
 import { GetPayload } from "@/payload/utilities/config/GetPayload"
 
 export const Statistics = async () => {
@@ -17,7 +18,7 @@ export const Statistics = async () => {
                     <h3 className="text-3xl md:text-4xl">{content?.information?.subtitle}</h3>
 
                     {content?.information?.texts?.map((text) => (
-                        <p className="text-md text-[#4A5565]" key={text?.id}>
+                        <p key={text?.id} className="text-md text-[#4A5565]">
                             {text?.text}
                         </p>
                     ))}
@@ -25,20 +26,21 @@ export const Statistics = async () => {
 
                 <div className="flex flex-2 flex-col gap-5 self-start">
                     <ol className="grid gap-5">
-                        {content?.information?.blocks?.map((block) => (
-                            <li
-                                className="flex flex-col gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg"
-                                key={block?.id}
-                            >
-                                <DynamicIcon
-                                    icon={block?.icon as string}
-                                    className="size-14 rounded-xl bg-[#2177E8]/10 p-4 text-[#2177E8]"
-                                    strokeWidth={2.5}
-                                />
+                        {content?.information?.blocks?.map((block, index) => (
+                            <li key={block?.id}>
+                                <ViewAnimation type="Leftwards" delay={index * 100} className="h-full w-full">
+                                    <div className="flex flex-col gap-5 rounded-[20px] border border-gray-100 px-8 py-10 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg">
+                                        <DynamicIcon
+                                            icon={block?.icon as string}
+                                            className="size-14 rounded-xl bg-[#2177E8]/10 p-4 text-[#2177E8]"
+                                            strokeWidth={2.5}
+                                        />
 
-                                <h3 className="text-xl font-semibold">{block?.title}</h3>
+                                        <h3 className="text-xl font-semibold">{block?.title}</h3>
 
-                                <p className="text-md text-[#4A5565]">{block?.text}</p>
+                                        <p className="text-md text-[#4A5565]">{block?.text}</p>
+                                    </div>
+                                </ViewAnimation>
                             </li>
                         ))}
                     </ol>
