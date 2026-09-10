@@ -34,7 +34,7 @@ const Page = async () => {
             <PageAtmosphere
                 eyebrow="360° Erlebnisse"
                 title="Virtuelle Touren aus der Luft"
-                subtitle="Immersive Rundgänge, die Räume, Gebäude und Areale erlebbar machen – interaktiv, präzise und jederzeit teilbar."
+                subtitle="Immersive Rundgänge, die Räume, Gebäude und Areale erlebbar machen - interaktiv, präzise und jederzeit teilbar!"
             >
                 <List data={content} />
             </PageAtmosphere>

@@ -39,7 +39,7 @@ export const List = ({ data }: { data: ToursPage }) => {
                             </div>
 
                             <Link
-                                href={tour?.link as string}
+                                href={tour?.link as any as string}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="shrink-0"
