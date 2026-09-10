@@ -26,7 +26,7 @@ export const Benefits = async () => {
                                 <div className="flex gap-3 rounded-[20px] border border-gray-100 px-5 py-7 shadow-md transition-all duration-300 ease-in-out hover:scale-102 hover:border-[#2177E8]/50 hover:shadow-lg">
                                     <CheckCircle className="size-6 shrink-0 text-[#2177E8]" />
 
-                                    <p>{benefit?.text}</p>
+                                    <p>{benefit?.benefit ?? ""}</p>
                                 </div>
                             </ViewAnimation>
                         </li>
